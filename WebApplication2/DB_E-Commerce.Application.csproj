@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MediatR" Version="12.4.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.11" />
+		<PackageReference Include="MongoDB.Driver" Version="2.19.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DB_E-Commerce.Models\DB_E-Commerce.Models.csproj" />
+		<ProjectReference Include="..\DB_E-Commerce.Persistence\DB_E-Commerce.Persistence.csproj" />
+	</ItemGroup>
+</Project>

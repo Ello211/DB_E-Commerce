@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="E-Commerce.MVC\NewFolder\**" />
+    <Content Remove="E-Commerce.MVC\NewFolder\**" />
+    <EmbeddedResource Remove="E-Commerce.MVC\NewFolder\**" />
+    <None Remove="E-Commerce.MVC\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="E-Commerce.MVC\wwwroot\css\site.css" />
     <Content Include="E-Commerce.MVC\wwwroot\favicon.ico" />
     <Content Include="E-Commerce.MVC\wwwroot\js\site.js" />
@@ -73,10 +80,7 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="E-Commerce.MVC\NewFolder\" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
 
 </Project>

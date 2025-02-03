@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "DB_E-Commerce": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61091;http://localhost:61092"
+    }
+  }
+}
