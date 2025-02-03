@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace DB_E_Commerce.Models
+{
+    public class Payment
+    {
+        public int PaymentID { get; set; }
 
-namespace DB_E-Commerce.Models
-{
-    internal class Order
-{
-}
+        public string Currency { get; set; }
+
+        public string PaymentMethod { get; set; }
+
+        public string PaymentStatus { get; set; }
+
+        public decimal PaymentAmount { get; set; }
+
+
+        public ICollection<OrderID> Orders { get; set; }
+
+    }
 }

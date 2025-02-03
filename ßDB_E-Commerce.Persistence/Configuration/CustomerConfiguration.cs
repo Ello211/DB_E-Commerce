@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DB_E-Commerce.Persistence.Configuration
+using DB_E_Commerce.Models;
+
+namespace University.Persistence.Configuration;
+
+public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 {
-    internal class OrderConfiguration
-{
-}
+    public void Configure(EntityTypeBuilder<Customer> builder)
+    {
+        builder.HasKey(customer => customer.CustomerID);
+    }
 }

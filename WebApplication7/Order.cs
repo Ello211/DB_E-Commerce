@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace DB_E_Commerce.Models
+{
+    public class Order
+    {
+        public int OrderID { get; set; }
 
-namespace DB_E-Commerce.Models
-{
-    internal class Order
-{
-}
+        public DateTime OrderDate { get; set; }
+
+        public decimal TotalPrice { get; set; }
+
+        public int CustomerID { get; set; }
+
+    }
 }

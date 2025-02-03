@@ -1,12 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DB_E-Commerce.Persistence.Configuration
+using DB_E_Commerce.Models;
+
+namespace DB_E_Commerce.Persistence.Configuration
 {
-    internal class OrderConfiguration
-{
-}
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
+    {
+        public void Configure(EntityTypeBuilder<Product> builder)
+        {
+            builder.HasKey(product => product.ProductID);
+
+            builder.Property(product => product.Productname).HasMaxLength(50).IsRequired();
+            builder.Property(product => product.Price).IsRequired();
+
+            builder.HasOne(product => product.CategoryID) 
+                .WithOne( product_category => product_category.ProductID);
+
+            builder.HasMany(product => product.OrderIDs) 
+                .WithOne(product_order => product_order.ProductID);
+
+        }
+    }
 }
