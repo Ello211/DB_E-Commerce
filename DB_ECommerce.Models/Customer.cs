@@ -9,7 +9,7 @@
 
         public string Address { get; set; }
 
-        public DateOnly? Birthdate { get; set; }
+        public DateOnly? Birthday { get; set; }
 
         public DateOnly AccountCreated { get; set; }
 
