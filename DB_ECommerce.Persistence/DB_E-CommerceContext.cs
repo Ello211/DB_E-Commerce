@@ -12,20 +12,32 @@ namespace DB_ECommerce.Persistence
             this.Database.EnsureCreated();
         }
 
-        public DbSet<Student> Students { get; set; }
+        public DbSet<Category> Categorys { get; set; }
 
-        public DbSet<Course> Courses { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
-        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
-        public DbSet<Mark> Marks { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Product_Category> Products_Categories { get; set; }
+
+        public DbSet<Product_Order> Products_Orders { get; set; }
+
+        public DbSet<Shipment> Shipments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new StudentConfiguration());
-            modelBuilder.ApplyConfiguration(new CourseConfiguration());
-            modelBuilder.ApplyConfiguration(new TeacherConfiguration());
-            modelBuilder.ApplyConfiguration(new MarkConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new Product_CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new Product_OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new ShipmentConfiguration());
         }
     }
 }
