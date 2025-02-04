@@ -7,16 +7,16 @@ using DB_ECommerce.Persistence;
 
 namespace DB_ECommerce.Application.Payments;
 
-public class GetPaymentQueryQueryHandler : IRequestHandler<GetPaymentQuery, Payment>
+public class GetPaymentQueryHandler : IRequestHandler<GetShipmentQuery, Payment>
 {
     private readonly DB_ECommerceContext context;
 
-    public GetPaymentQueryQueryHandler(DB_ECommerceContext context)
+    public GetPaymentQueryHandler(DB_ECommerceContext context)
     {
         this.context = context;
     }
 
-    public async Task<Payment> Handle(GetPaymentQuery request, CancellationToken cancellationToken)
+    public async Task<Payment> Handle(GetShipmentQuery request, CancellationToken cancellationToken)
     {
         var payment = await context.Payments
             .Include(payment => payment.Order)

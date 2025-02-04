@@ -4,11 +4,11 @@ using DB_ECommerce.Persistence;
 
 namespace DB_ECommerce.Application.Payments;
 
-public class DeletePaymentCommandHandler : IRequestHandler<DeletePaymentCommand>
+public class DeleteCommandHandler : IRequestHandler<DeletePaymentCommand>
 {
     private readonly DB_ECommerceContext context;
 
-    public DeletePaymentCommandHandler(DB_ECommerceContext context)
+    public DeleteCommandHandler(DB_ECommerceContext context)
     {
         this.context = context;
     }

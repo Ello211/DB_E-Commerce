@@ -3,6 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using DB_ECommerce.Persistence;
+using DB_ECommerce.Application.Customers;
 
 namespace DB_ECommerce.Application.Payments;
 

@@ -14,5 +14,8 @@
 
         public ICollection<Product_Order> Products_Orders { get; set; }
 
+        public ICollection<Shipment> Shipments { get; set; } = new List<Shipment>();
+
+
     }
 }

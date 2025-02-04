@@ -17,8 +17,4 @@
 		<ProjectReference Include="..\DB_ECommerce.Models\DB_ECommerce.Models.csproj" />
 		<ProjectReference Include="..\DB_ECommerce.Persistence\DB_ECommerce.Persistence.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Shipments\" />
-	</ItemGroup>
 </Project>
