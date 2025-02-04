@@ -3,7 +3,7 @@
 using DB_ECommerce.Models;
 
 namespace DB_ECommerce.Application.Customers;
-public class CreateCustomerCommand : IRequest
+public class CreatePaymentCommand : IRequest
 {
     public string Firstname { get; set; }
 

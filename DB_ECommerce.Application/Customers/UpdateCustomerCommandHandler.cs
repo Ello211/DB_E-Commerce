@@ -8,7 +8,7 @@ using DB_ECommerce.Persistence;
 
 namespace DB_ECommerce.Application.Customers;
 
-public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand>
+public class UpdateCustomerCommandHandler : IRequestHandler<UpdatePaymentCommand>
 {
     private readonly DB_ECommerceContext context;
     private readonly IDistributedCache cache;
@@ -19,7 +19,7 @@ public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerComman
         this.cache = cache;
     }
 
-    public async Task Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdatePaymentCommand request, CancellationToken cancellationToken)
     {
         var customer = request.ToCustomer();
 

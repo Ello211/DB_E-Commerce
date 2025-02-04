@@ -7,12 +7,12 @@ using DB_ECommerce.Persistence;
 
 namespace DB_ECommerce.Application.Customers;
 
-public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand>
+public class DeletePaymentCommandHandler : IRequestHandler<DeleteCustomerCommand>
 {
     private readonly DB_ECommerceContext context;
     private readonly IDistributedCache cache;
 
-    public DeleteCustomerCommandHandler(DB_ECommerceContext context, IDistributedCache cache)
+    public DeletePaymentCommandHandler(DB_ECommerceContext context, IDistributedCache cache)
     {
         this.context = context;
         this.cache = cache;

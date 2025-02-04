@@ -9,14 +9,14 @@ using DB_ECommerce.Persistence;
 
 namespace DB_ECommerce.Application.Customers;
 
-public class GetCustomerQueryHandler : IRequestHandler<GetCustomerQuery, Customer>
+public class GetPaymentQueryHandler : IRequestHandler<GetCustomerQuery, Customer>
 {
     private readonly DB_ECommerceContext context;
     private readonly IDistributedCache cache;
 
     private TimeSpan threeMonths = new(0, 3, 0, 0, 0, 0);
 
-    public GetCustomerQueryHandler(DB_ECommerceContext context, IDistributedCache cache)
+    public GetPaymentQueryHandler(DB_ECommerceContext context, IDistributedCache cache)
     {
         this.context = context;
         this.cache = cache;
@@ -61,7 +61,7 @@ public class GetCustomerQueryHandler : IRequestHandler<GetCustomerQuery, Custome
 
     private async Task<Customer> GetCustomerFromDatabase(GetCustomerQuery request, CancellationToken cancellationToken)
     {
-        var customer = await context.Customers.FirstOrDefaultAsync(s => s.CustomerID == request.CustomerID, cancellationToken);
+        var customer = await context.Customers.FirstOrDefaultAsync(c => c.CustomerID == request.CustomerID, cancellationToken);
         return customer;
     }
 }

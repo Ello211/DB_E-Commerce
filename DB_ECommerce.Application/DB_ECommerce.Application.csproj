@@ -19,7 +19,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Payment\" />
 	  <Folder Include="Shipments\" />
 	</ItemGroup>
 </Project>

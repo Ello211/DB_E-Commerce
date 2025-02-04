@@ -7,16 +7,16 @@ using DB_ECommerce.Persistence;
 
 namespace DB_ECommerce.Application.Customers;
 
-public class GetCustomersQueryHandler : IRequestHandler<GetCustomersQuery, List<Customer>>
+public class GetPaymentsQueryHandler : IRequestHandler<GetPaymentQuery, List<Customer>>
 {
     private readonly DB_ECommerceContext context;
 
-    public GetCustomersQueryHandler(DB_ECommerceContext context)
+    public GetPaymentsQueryHandler(DB_ECommerceContext context)
     {
         this.context = context;
     }
 
-    public async Task<List<Customer>> Handle(GetCustomersQuery request, CancellationToken cancellationToken)
+    public async Task<List<Customer>> Handle(GetPaymentQuery request, CancellationToken cancellationToken)
     {
         var customers = await context.Customers.ToListAsync(cancellationToken);
         return customers;
