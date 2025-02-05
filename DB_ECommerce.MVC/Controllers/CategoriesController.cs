@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MediatR;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using DB_ECommerce.MVC.ViewModels.Categories;
+using DB_E_Commerce.Application.Categories;
 using DB_E_Commerce.E_Commerce.Application.Categories;
 namespace DB_ECommerce.MVC.Controllers
 {
@@ -17,8 +18,31 @@ namespace DB_ECommerce.MVC.Controllers
         public async Task<IActionResult> Index()
         {
             var categories = await _mediator.Send(new GetCategoriesQuery());
-            var categoryViewModels = categories.Select(CategoryListViewModel.FromCategory).ToList();
-            return View(categoryViewModels);
+            var viewModel = categories.Select(c => new CategoryListViewModel
+            {
+                Id = c.CategoryID,
+                CategoryName = c.CategoryName
+            }).ToList();
+
+            return View(viewModel);
+        }
+
+        // GET: Categories/Details/5
+        public async Task<IActionResult> Details(int id)
+        {
+            var category = await _mediator.Send(new GetCategoryQuery { Id = id });
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new CategoryDetailsViewModel
+            {
+                Id = category.CategoryID,
+                CategoryName = category.CategoryName
+            };
+
+            return View(viewModel);
         }
 
         // GET: Categories/Create
@@ -34,7 +58,11 @@ namespace DB_ECommerce.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var command = viewModel.ToCreateCategoryCommand();
+                var command = new CreateCategoryCommand
+                {
+                    CategoryName = viewModel.CategoryName
+                };
+
                 await _mediator.Send(command);
                 return RedirectToAction(nameof(Index));
             }
@@ -45,9 +73,17 @@ namespace DB_ECommerce.MVC.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var category = await _mediator.Send(new GetCategoryQuery { Id = id });
-            if (category == null) return NotFound();
+            if (category == null)
+            {
+                return NotFound();
+            }
 
-            var viewModel = CategoryUpdateViewModel.FromCategory(category);
+            var viewModel = new CategoryUpdateViewModel
+            {
+                Id = category.CategoryID,
+                CategoryName = category.CategoryName
+            };
+
             return View(viewModel);
         }
 
@@ -56,23 +92,22 @@ namespace DB_ECommerce.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, CategoryUpdateViewModel viewModel)
         {
-            if (id != viewModel.Id) return NotFound();
+            if (id != viewModel.Id)
+            {
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
-                await _mediator.Send(viewModel.ToUpdateCategoryCommand());
+                var command = new UpdateCategoryCommand
+                {
+                    Id = viewModel.Id,
+                    CategoryName = viewModel.CategoryName
+                };
+
+                await _mediator.Send(command);
                 return RedirectToAction(nameof(Index));
             }
-            return View(viewModel);
-        }
-
-        // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int id)
-        {
-            var category = await _mediator.Send(new GetCategoryQuery { Id = id });
-            if (category == null) return NotFound();
-
-            var viewModel = CategoryDetailsViewModel.FromCategory(category);
             return View(viewModel);
         }
 
@@ -80,9 +115,17 @@ namespace DB_ECommerce.MVC.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var category = await _mediator.Send(new GetCategoryQuery { Id = id });
-            if (category == null) return NotFound();
+            if (category == null)
+            {
+                return NotFound();
+            }
 
-            var viewModel = CategoryDetailsViewModel.FromCategory(category);
+            var viewModel = new CategoryDetailsViewModel
+            {
+                Id = category.CategoryID,
+                CategoryName = category.CategoryName
+            };
+
             return View(viewModel);
         }
 

@@ -2,16 +2,16 @@
 
 using Microsoft.EntityFrameworkCore;
 
-using DB_E_Commerce.E_Commerce.Models;
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Models;
+using DB_ECommerce.Persistence;
 
 namespace DB_E_Commerce.E_Commerce.Application.Categories
 {
     public class GetCategoryQueryHandler : IRequestHandler<GetCategoryQuery, Category>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
 
-        public GetCategoryQueryHandler(ECommerceContext context)
+        public GetCategoryQueryHandler(DB_ECommerceContext context)
         {
             this.context = context;
         }
@@ -19,7 +19,7 @@ namespace DB_E_Commerce.E_Commerce.Application.Categories
         public async Task<Category> Handle(GetCategoryQuery request, CancellationToken cancellationToken)
         {
             var category = await context.Categories
-                .Include(c => c.ProductsCategories)
+                .Include(c => c.Products_Categories)
                     .ThenInclude(pc => pc.Product)
                 .FirstOrDefaultAsync(c => c.CategoryID == request.Id, cancellationToken);
 

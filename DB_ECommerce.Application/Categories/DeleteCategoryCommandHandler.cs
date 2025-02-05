@@ -1,14 +1,14 @@
 ﻿using MediatR;
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Persistence;
 using DB_E_Commerce.Application.Categories;
 
 namespace DB_E_Commerce.E_Commerce.Application.Categories
 {
     public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
 
-        public DeleteCategoryCommandHandler(ECommerceContext context)
+        public DeleteCategoryCommandHandler(DB_ECommerceContext context)
         {
             this.context = context;
         }

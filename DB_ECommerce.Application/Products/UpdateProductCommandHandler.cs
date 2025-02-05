@@ -1,16 +1,17 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
-using DB_E_Commerce.E_Commerce.Models;
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Models;
+using DB_ECommerce.Persistence;
+using DB_E_Commerce.E_Commerce.Application.Products;
 
 namespace DB_E_Commerce.Application.Products
 {
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
         private readonly IDistributedCache cache;
 
-        public UpdateProductCommandHandler(ECommerceContext context, IDistributedCache cache)
+        public UpdateProductCommandHandler(DB_ECommerceContext context, IDistributedCache cache)
         {
             this.context = context;
             this.cache = cache;
@@ -27,7 +28,7 @@ namespace DB_E_Commerce.Application.Products
 
             existingProduct.ProductName = request.ProductName;
             existingProduct.Price = request.Price;
-            existingProduct.ProductCategories = request.ProductCategories;
+            existingProduct.Products_Categories = request.ProductCategories;
 
             await context.SaveChangesAsync(cancellationToken);
 

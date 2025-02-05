@@ -12,7 +12,7 @@ namespace DB_ECommerce.Persistence
             this.Database.EnsureCreated();
         }
 
-        public DbSet<Category> Categorys { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public DbSet<Customer> Customers { get; set; }
 

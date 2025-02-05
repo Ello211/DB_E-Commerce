@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using DB_E_Commerce.E_Commerce.Models;
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Models;
+using DB_ECommerce.Persistence;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -9,22 +9,22 @@ namespace DB_E_Commerce.E_Commerce.Application.Products_Categories
 {
     public class CreateProductCategoryCommandHandler : IRequestHandler<CreateProductCategoryCommand>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
 
-        public CreateProductCategoryCommandHandler(ECommerceContext context)
+        public CreateProductCategoryCommandHandler(DB_ECommerceContext context)
         {
             this.context = context;
         }
 
         public async Task Handle(CreateProductCategoryCommand request, CancellationToken cancellationToken)
         {
-            var productCategory = new ProductCategory
+            var productCategory = new Product_Category
             {
-                ProductId = request.ProductId,
-                CategoryId = request.CategoryId
+                ProductID = request.ProductId,
+                CategoryID = request.CategoryId
             };
 
-            context.ProductCategories.Add(productCategory);
+            context.Products_Categories.Add(productCategory);
             await context.SaveChangesAsync(cancellationToken);
         }
     }

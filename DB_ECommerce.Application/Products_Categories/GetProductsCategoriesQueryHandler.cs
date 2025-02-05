@@ -1,25 +1,25 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using DB_E_Commerce.E_Commerce.Models;
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Models;
+using DB_ECommerce.Persistence;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace DB_E_Commerce.E_Commerce.Application.Products_Categories
 {
-    public class GetProductsCategoriesQueryHandler : IRequestHandler<GetProductsCategoriesQuery, List<ProductCategory>>
+    public class GetProductsCategoriesQueryHandler : IRequestHandler<GetProductsCategoriesQuery, List<Product_Category>>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
 
-        public GetProductsCategoriesQueryHandler(ECommerceContext context)
+        public GetProductsCategoriesQueryHandler(DB_ECommerceContext context)
         {
             this.context = context;
         }
 
-        public async Task<List<ProductCategory>> Handle(GetProductsCategoriesQuery request, CancellationToken cancellationToken)
+        public async Task<List<Product_Category>> Handle(GetProductsCategoriesQuery request, CancellationToken cancellationToken)
         {
-            var productsCategories = await context.ProductsCategories.ToListAsync(cancellationToken);
+            var productsCategories = await context.Products_Categories.ToListAsync(cancellationToken);
 
             if (productsCategories == null || productsCategories.Count == 0)
             {

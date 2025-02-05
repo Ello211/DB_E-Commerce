@@ -1,16 +1,16 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using DB_E_Commerce.E_Commerce.Models;
+using DB_ECommerce.Models;
 using DB_E_Commerce.E_Commerce.Application.Orderss;
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Persistence;
 
 namespace DB_E_Commerce.E_Commerce.Application.Orderss
 {
     public class GetOrderQueryHandler : IRequestHandler<GetOrderQuery, Order>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
 
-        public GetOrderQueryHandler(ECommerceContext context)
+        public GetOrderQueryHandler(DB_ECommerceContext context)
         {
             this.context = context;
         }
