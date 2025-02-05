@@ -1,0 +1,16 @@
+﻿@model DB_ECommerce.MVC.ViewModels.Categories.CategoryDetailsViewModel
+
+@{
+    ViewData["Title"] = "Category Details";
+}
+
+<h2>Category Details</h2>
+
+<div>
+    <h4>Category Name:</h4>
+    <p>@Model.CategoryName</p>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
+

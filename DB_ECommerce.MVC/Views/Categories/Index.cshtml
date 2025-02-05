@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DB_ECommerce.MVC.ViewModels.Categories.CategoryListViewModel>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h2>Categories</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Category</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().CategoryName)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => category.CategoryName)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@category.Id" class="btn btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
