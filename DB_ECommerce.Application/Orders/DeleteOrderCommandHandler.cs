@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using DB_E_Commerce.E_Commerce.Application.Orderss;
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Persistence;
 
 namespace DB_E_Commerce.E_Commerce.Application.Orderss
 {
     public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
 
-        public DeleteOrderCommandHandler(ECommerceContext context)
+        public DeleteOrderCommandHandler(DB_ECommerceContext context)
         {
             this.context = context;
         }

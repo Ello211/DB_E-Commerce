@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using DB_E_Commerce.E_Commerce.Models;
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Models;
+using DB_ECommerce.Persistence;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +9,9 @@ namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
 {
     public class CreateProductOrderCommandHandler : IRequestHandler<CreateProductOrderCommand>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
 
-        public CreateProductOrderCommandHandler(ECommerceContext context)
+        public CreateProductOrderCommandHandler(DB_ECommerceContext context)
         {
             this.context = context;
         }
@@ -27,7 +27,7 @@ namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
 
             var totalPrice = product.Price * request.Quantity;
 
-            var productOrder = new ProductOrder
+            var productOrder = new Product_Order
             {
                 ProductId = request.ProductId,
                 OrderId = request.OrderId,
@@ -35,7 +35,7 @@ namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
                 TotalPrice = totalPrice
             };
 
-            context.ProductOrders.Add(productOrder);
+            context.Products_Orders.Add(productOrder);
             await context.SaveChangesAsync(cancellationToken);
         }
     }
