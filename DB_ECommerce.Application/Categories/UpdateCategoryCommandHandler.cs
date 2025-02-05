@@ -2,15 +2,15 @@
 
 using Microsoft.EntityFrameworkCore;
 
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Persistence;
 
 namespace DB_E_Commerce.E_Commerce.Application.Categories
 {
     public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
 
-        public UpdateCategoryCommandHandler(ECommerceContext context)
+        public UpdateCategoryCommandHandler(DB_ECommerceContext context)
         {
             this.context = context;
         }
