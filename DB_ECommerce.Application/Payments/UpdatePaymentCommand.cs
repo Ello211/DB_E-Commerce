@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 namespace DB_ECommerce.Application.Payments;
-public class UpdateShipmentCommand : IRequest
+public class UpdatePaymentCommand : IRequest
 {
     public int PaymentID { get; set; }
 
