@@ -2,7 +2,7 @@
 
 namespace DB_ECommerce.MVC.Controllers
 {
-    public class Products_Categories : Controller
+    public class Products_OrdersController : Controller
     {
         public IActionResult Index()
         {
