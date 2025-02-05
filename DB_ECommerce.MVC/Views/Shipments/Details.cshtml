@@ -1,0 +1,31 @@
+﻿@model DB_ECommerce.MVC.ViewModels.Shipments.ShipmentDetailsViewModel
+
+@{
+    ViewData["Title"] = "Shipment Details";
+}
+
+<h2>Shipment Details</h2>
+
+<div>
+    <h4>Shipment</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Tracking Number</dt>
+        <dd class="col-sm-10">@Model.TrackingNumber</dd>
+
+        <dt class="col-sm-2">Status</dt>
+        <dd class="col-sm-10">@Model.ShipmentStatus</dd>
+
+        <dt class="col-sm-2">Shipment Date</dt>
+        <dd class="col-sm-10">@Model.ShipmentDate?.ToString("dd-MM-yyyy")</dd>
+
+        <dt class="col-sm-2">Delivery Date</dt>
+        <dd class="col-sm-10">@Model.DeliveryDate?.ToString("dd-MM-yyyy")</dd>
+
+        <dt class="col-sm-2">Order ID</dt>
+        <dd class="col-sm-10">@Model.OrderId</dd>
+    </dl>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.ShipmentID" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
