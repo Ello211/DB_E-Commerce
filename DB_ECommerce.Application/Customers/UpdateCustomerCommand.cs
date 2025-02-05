@@ -3,7 +3,7 @@
 using DB_ECommerce.Models;
 
 namespace DB_ECommerce.Application.Customers;
-public class UpdatePaymentCommand : IRequest
+public class UpdateCustomerCommand : IRequest
 {
     public int CustomerID { get; set; }
 

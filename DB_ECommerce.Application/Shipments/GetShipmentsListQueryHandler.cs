@@ -22,6 +22,6 @@ public class GetShipmentsListQueryHandler : IRequestHandler<GetShipmentsListQuer
             .Include(shipment => shipment.Order)
             .ToListAsync(cancellationToken);
 
-        return shipment;
+        return shipments;
     }
 }

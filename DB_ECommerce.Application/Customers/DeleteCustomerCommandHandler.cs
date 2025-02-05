@@ -1,21 +1,16 @@
 ﻿using MediatR;
 
-using Microsoft.Extensions.Caching.Distributed;
-
-using DB_ECommerce.Models;
 using DB_ECommerce.Persistence;
 
 namespace DB_ECommerce.Application.Customers;
 
-public class DeletePaymentCommandHandler : IRequestHandler<DeleteCustomerCommand>
+public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand>
 {
     private readonly DB_ECommerceContext context;
-    private readonly IDistributedCache cache;
 
-    public DeletePaymentCommandHandler(DB_ECommerceContext context, IDistributedCache cache)
+    public DeleteCustomerCommandHandler(DB_ECommerceContext context)
     {
         this.context = context;
-        this.cache = cache;
     }
 
     public async Task Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
@@ -27,13 +22,5 @@ public class DeletePaymentCommandHandler : IRequestHandler<DeleteCustomerCommand
         }
 
         await context.SaveChangesAsync(cancellationToken);
-
-        await this.InvalidateCache(customer);
-    }
-
-    private async Task InvalidateCache(Customer customer)
-    {
-        var key = $"customer-{customer.CustomerID}";
-        await this.cache.RemoveAsync(key);
     }
 }
