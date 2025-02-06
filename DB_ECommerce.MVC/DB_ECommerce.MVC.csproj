@@ -33,9 +33,7 @@
 
 	<ItemGroup>
 	  <Folder Include="ViewModels\Customers\" />
-	  <Folder Include="ViewModels\Payments\" />
 	  <Folder Include="ViewModels\Orders\" />
-	  <Folder Include="Views\Payments\" />
 	  <Folder Include="Views\Orders\" />
 	</ItemGroup>
 

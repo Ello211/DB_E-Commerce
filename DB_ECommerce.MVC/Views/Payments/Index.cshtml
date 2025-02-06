@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DB_ECommerce.MVC.ViewModels.Payments.PaymentListViewModel>
+
+@{
+    ViewData["Title"] = "Payments";
+}
+
+<h2>Payments</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Payment</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Currency)</th>
+            <th>@Html.DisplayNameFor(model => model.PaymentMethod)</th>
+            <th>@Html.DisplayNameFor(model => model.PaymentStatus)</th>
+            <th>@Html.DisplayNameFor(model => model.PaymentAmount)</th>
+            <th>@Html.DisplayNameFor(model => model.OpenPayment)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Currency)</td>
+                <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
+                <td>@Html.DisplayFor(modelItem => item.PaymentStatus)</td>
+                <td>@Html.DisplayFor(modelItem => item.PaymentAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.OpenPayment)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PaymentID" class="btn btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.PaymentID" class="btn btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.PaymentID" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

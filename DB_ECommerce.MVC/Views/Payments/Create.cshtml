@@ -1,0 +1,32 @@
+﻿@model DB_ECommerce.MVC.ViewModels.Payments.PaymentCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Payment";
+}
+
+<h2>Create Payment</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Currency" class="control-label"></label>
+        <input asp-for="Currency" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PaymentMethod" class="control-label"></label>
+        <input asp-for="PaymentMethod" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PaymentStatus" class="control-label"></label>
+        <input asp-for="PaymentStatus" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PaymentAmount" class="control-label"></label>
+        <input asp-for="PaymentAmount" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="OpenPayment" class="control-label"></label>
+        <input asp-for="OpenPayment" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
