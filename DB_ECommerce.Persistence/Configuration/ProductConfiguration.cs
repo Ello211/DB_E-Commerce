@@ -13,6 +13,9 @@ namespace DB_ECommerce.Persistence.Configuration
 
             builder.Property(product => product.ProductName).HasMaxLength(50).IsRequired();
             builder.Property(product => product.Price).IsRequired();
+
+            builder.HasMany(product => product.Categories)
+                .WithMany(category => category.Products);
         }
     }
 }

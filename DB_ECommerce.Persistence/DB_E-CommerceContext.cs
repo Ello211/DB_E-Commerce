@@ -22,8 +22,6 @@ namespace DB_ECommerce.Persistence
 
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<Product_Category> Products_Categories { get; set; }
-
         public DbSet<Product_Order> Products_Orders { get; set; }
 
         public DbSet<Shipment> Shipments { get; set; }
@@ -35,7 +33,6 @@ namespace DB_ECommerce.Persistence
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            modelBuilder.ApplyConfiguration(new Product_CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new Product_OrderConfiguration());
             modelBuilder.ApplyConfiguration(new ShipmentConfiguration());
         }
