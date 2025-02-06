@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using DB_E_Commerce.E_Commerce.Application.Categories;
+using DB_E_Commerce.Application.Categories;
 using DB_ECommerce.Persistence;
 
 namespace DB_E_Commerce.Application.Categories

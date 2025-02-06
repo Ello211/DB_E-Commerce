@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DB_E_Commerce.Application.Categories;
 using DB_E_Commerce.E_Commerce.Application.Categories;
 
 namespace DB_ECommerce.MVC.ViewModels.Categories
@@ -13,7 +12,7 @@ namespace DB_ECommerce.MVC.ViewModels.Categories
         public string CategoryName { get; set; }
 
         // Konvertiert das Model in ein ViewModel
-        public static CategoryUpdateViewModel FromCategory(DB_E_Commerce.Models.Category category)
+        public static CategoryUpdateViewModel FromCategory(DB_ECommerce.Models.Category category)
         {
             return new CategoryUpdateViewModel
             {

@@ -6,7 +6,7 @@
         public string CategoryName { get; set; }
 
         // Konvertiert das Model in ein ViewModel
-        public static CategoryDetailsViewModel FromCategory(DB_E_Commerce.Models.Category category)
+        public static CategoryDetailsViewModel FromCategory(DB_ECommerce.Models.Category category)
         {
             return new CategoryDetailsViewModel
             {
@@ -16,3 +16,4 @@
         }
     }
 }
+    

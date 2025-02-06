@@ -6,7 +6,7 @@
         public string CategoryName { get; set; }
 
         // Diese Methode wandelt das Model in ein ViewModel um
-        public static CategoryListViewModel FromCategory(DB_E_Commerce.Models.Category category)
+        public static CategoryListViewModel FromCategory(DB_ECommerce.Models.Category category)
         {
             return new CategoryListViewModel
             {

@@ -6,9 +6,9 @@ namespace DB_ECommerce.Application.Customers;
 
 public class CreateCustomerCommand : IRequest
 {
-    public string Firstname { get; set; }
+    public string FirstName { get; set; }
 
-    public string Lastname { get; set; }
+    public string LastName { get; set; }
 
     public string Address { get; set; }
 
@@ -20,8 +20,8 @@ public class CreateCustomerCommand : IRequest
     {
         var customer = new Customer
         {
-            Firstname = this.Firstname,
-            Lastname = this.Lastname,
+            FirstName = this.FirstName,
+            LastName = this.LastName,
             Address = this.Address,
             Birthday = this.Birthday,
             AccountCreated = DateOnly.FromDateTime(DateTime.UtcNow),

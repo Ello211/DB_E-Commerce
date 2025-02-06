@@ -2,7 +2,7 @@
 
 namespace DB_ECommerce.MVC.Controllers
 {
-    public class HomeController3 : Controller
+    public class PaymentsController : Controller
     {
         public IActionResult Index()
         {
