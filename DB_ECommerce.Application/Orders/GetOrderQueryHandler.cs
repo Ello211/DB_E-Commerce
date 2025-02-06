@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+
 using DB_ECommerce.Models;
-using DB_E_Commerce.E_Commerce.Application.Orderss;
 using DB_ECommerce.Persistence;
 
-namespace DB_E_Commerce.E_Commerce.Application.Orderss
+namespace DB_ECommerce.Application.Orders
 {
     public class GetOrderQueryHandler : IRequestHandler<GetOrderQuery, Order>
     {
@@ -17,11 +17,11 @@ namespace DB_E_Commerce.E_Commerce.Application.Orderss
 
         public async Task<Order> Handle(GetOrderQuery request, CancellationToken cancellationToken)
         {
-            var order = await context.Orders.FirstOrDefaultAsync(o => o.OrderID == request.Id, cancellationToken);
+            var order = await context.Orders.FirstOrDefaultAsync(o => o.OrderID == request.OrderID, cancellationToken);
 
             if (order == null)
             {
-                throw new KeyNotFoundException($"Order with ID {request.Id} not found.");
+                throw new KeyNotFoundException($"Order with OrderID {request.OrderID} not found.");
             }
 
             return order;
