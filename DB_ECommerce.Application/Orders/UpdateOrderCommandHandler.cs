@@ -24,7 +24,7 @@ namespace DB_E_Commerce.E_Commerce.Application.Orderss
             existingOrder.CustomerId = request.CustomerId;
             existingOrder.OrderDate = request.OrderDate;
             existingOrder.TotalPrice = request.TotalPrice;
-            existingOrder.OrderItems = request.ProductsOrders;
+            existingOrder.Products_Orders = request.ProductsOrders;
 
             await context.SaveChangesAsync(cancellationToken);
         }
