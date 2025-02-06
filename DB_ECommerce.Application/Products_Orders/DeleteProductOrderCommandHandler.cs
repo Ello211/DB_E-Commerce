@@ -1,11 +1,8 @@
 ﻿using MediatR;
-using DB_ECommerce.Models;
-using DB_ECommerce.Persistence;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
-namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
+using DB_ECommerce.Persistence;
+
+namespace DB_ECommerce.Application.Product_Orders
 {
     public class DeleteProductOrderCommandHandler : IRequestHandler<DeleteProductOrderCommand>
     {
@@ -18,12 +15,10 @@ namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
 
         public async Task Handle(DeleteProductOrderCommand request, CancellationToken cancellationToken)
         {
-            var productOrder = await context.Products_Orders
-                .FirstOrDefaultAsync(po => po.ProductOrderID == request.ProductId && po.OrderId == request.OrderId, cancellationToken);
-
+            var productOrder = await context.Products_Orders.FindAsync(request.ProductOrderID, cancellationToken);
             if (productOrder == null)
             {
-                throw new KeyNotFoundException($"ProductOrder with ProductId {request.ProductId} and OrderId {request.OrderId} not found.");
+                throw new KeyNotFoundException($"ProductOrder with ProductOrderID {request.ProductOrderID} not found.");
             }
 
             context.Products_Orders.Remove(productOrder);

@@ -1,11 +1,12 @@
 ﻿using MediatR;
+
 using Microsoft.EntityFrameworkCore;
+
 using DB_ECommerce.Models;
 using DB_ECommerce.Persistence;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
+
+namespace DB_ECommerce.Application.Product_Orders
 {
     public class GetProductOrderQueryHandler : IRequestHandler<GetProductOrderQuery, Product_Order>
     {

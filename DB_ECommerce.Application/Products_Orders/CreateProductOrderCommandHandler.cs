@@ -1,11 +1,11 @@
 ﻿using MediatR;
-using DB_ECommerce.Models;
-using DB_ECommerce.Persistence;
-using System.Threading;
-using System.Threading.Tasks;
+
 using Microsoft.EntityFrameworkCore;
 
-namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
+using DB_ECommerce.Models;
+using DB_ECommerce.Persistence;
+
+namespace DB_ECommerce.Application.Product_Orders
 {
     public class CreateProductOrderCommandHandler : IRequestHandler<CreateProductOrderCommand>
     {
@@ -18,24 +18,31 @@ namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
 
         public async Task Handle(CreateProductOrderCommand request, CancellationToken cancellationToken)
         {
-            var product = await context.Products.FirstOrDefaultAsync(p => p.ProductID == request.ProductId, cancellationToken);
+            var product = await context.Products.FirstOrDefaultAsync(p => p.ProductID == request.ProductID, cancellationToken);
 
             if (product == null)
             {
-                throw new KeyNotFoundException($"Product with ID {request.ProductId} not found.");
+                throw new KeyNotFoundException($"Product with ID {request.ProductID} not found.");
+            }
+
+            var order = await context.Orders.FirstOrDefaultAsync(o => o.OrderID == request.OrderID, cancellationToken);
+
+            if (order == null)
+            {
+                throw new KeyNotFoundException($"Product with ID {request.OrderID} not found.");
             }
 
             var totalPrice = product.Price * request.Quantity;
 
             var productOrder = new Product_Order
             {
-                ProductId = request.ProductId,
-                OrderId = request.OrderId,
+                Product = product,
+                Order = order,
                 Quantity = request.Quantity,
                 TotalPrice = totalPrice
             };
 
-            context.Products_Orders.Add(productOrder);
+            context.Add(productOrder);
             await context.SaveChangesAsync(cancellationToken);
         }
     }
