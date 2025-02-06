@@ -1,14 +1,15 @@
 ﻿using MediatR;
 using DB_ECommerce.Persistence;
-using DB_E_Commerce.E_Commerce.Application.Orderss;
+using DB_ECommerce.Models;
+using Microsoft.EntityFrameworkCore;
 
 
-namespace DB_E_Commerce.E_Commerce.Application.Orderss
+
+namespace DB_ECommerce.Application.Orders
 {
     public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand>
     {
         private readonly DB_ECommerceContext context;
-        //private readonly DB_ECommerceContext context;
 
         public CreateOrderCommandHandler(DB_ECommerceContext context)
         {
@@ -17,10 +18,20 @@ namespace DB_E_Commerce.E_Commerce.Application.Orderss
 
         public async Task Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var order = request.ToOrder();
+            var customer = await context.Customers.FirstOrDefaultAsync(c => c.CustomerID == request.CustomerID, cancellationToken);
+            if (customer == null)
+            {
+                throw new NullReferenceException("Customer not found");
+            }
 
-            context.Orders.Add(order);
+            var order = new Order
+            {
+                OrderDate = request.OrderDate,
+                TotalPrice = request.TotalPrice,
+                Customer = customer
+            };
 
+            context.Add(order);
             await context.SaveChangesAsync(cancellationToken);
         }
     }
