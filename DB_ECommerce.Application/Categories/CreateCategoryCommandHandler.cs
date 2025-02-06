@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using DB_E_Commerce.Application.Categories;
+
 using DB_ECommerce.Persistence;
 
-namespace DB_E_Commerce.Application.Categories
+namespace DB_ECommerce.Application.Categories
 {
     public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Unit>
     {

@@ -20,11 +20,13 @@ namespace DB_ECommerce.Application.Product_Orders
         public async Task<Product_Order> Handle(GetProductOrderQuery request, CancellationToken cancellationToken)
         {
             var productOrder = await context.Products_Orders
-                .FirstOrDefaultAsync(po => po.ProductOrderID == request.ProductId && po.OrderId == request.OrderId, cancellationToken);
+                .Include(productOrder => productOrder.Order)
+                .Include(productOrder => productOrder.Product)
+                .FirstOrDefaultAsync(productOrder => productOrder.ProductOrderID == request.ProductOrderID, cancellationToken);
 
             if (productOrder == null)
             {
-                throw new KeyNotFoundException($"ProductOrder with ProductId {request.ProductId} and OrderId {request.OrderId} not found.");
+                throw new KeyNotFoundException($"Product_Order with ProductOrderID {request.ProductOrderID} not found.");
             }
 
             return productOrder;
