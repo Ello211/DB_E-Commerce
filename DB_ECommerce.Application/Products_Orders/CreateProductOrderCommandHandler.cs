@@ -22,14 +22,14 @@ namespace DB_ECommerce.Application.Product_Orders
 
             if (product == null)
             {
-                throw new KeyNotFoundException($"Product with ID {request.ProductID} not found.");
+                throw new KeyNotFoundException($"Product with ProductID {request.ProductID} not found.");
             }
 
             var order = await context.Orders.FirstOrDefaultAsync(o => o.OrderID == request.OrderID, cancellationToken);
 
             if (order == null)
             {
-                throw new KeyNotFoundException($"Product with ID {request.OrderID} not found.");
+                throw new KeyNotFoundException($"Product with ProductID {request.OrderID} not found.");
             }
 
             var totalPrice = product.Price * request.Quantity;
