@@ -1,11 +1,13 @@
 ﻿
 using MediatR;
+
 using Microsoft.EntityFrameworkCore;
+
 using DB_ECommerce.Models;
 using DB_ECommerce.Persistence;
 
 
-namespace DB_E_Commerce.E_Commerce.Application.Categories
+namespace DB_ECommerce.Application.Categories
 {
     public class GetCategoriesQueryHandler : IRequestHandler<GetCategoriesQuery, List<Category>>
     {
@@ -18,10 +20,7 @@ namespace DB_E_Commerce.E_Commerce.Application.Categories
 
         public async Task<List<Category>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
         {
-            var categories = await context.Categories
-                .Include(c => c.Products_Categories)
-                    .ThenInclude(pc => pc.Product)
-                .ToListAsync(cancellationToken);
+            var categories = await context.Categories.ToListAsync(cancellationToken);
             return categories;
         }
     }

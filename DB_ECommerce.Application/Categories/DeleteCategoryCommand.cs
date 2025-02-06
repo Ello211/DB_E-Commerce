@@ -1,9 +1,9 @@
 ﻿using MediatR;
 
-namespace DB_E_Commerce.Application.Categories
+namespace DB_ECommerce.Application.Categories
 {
     public class DeleteCategoryCommand : IRequest
     {
-        public int Id { get; set; }
+        public int CategoryID { get; set; }
     }
 }

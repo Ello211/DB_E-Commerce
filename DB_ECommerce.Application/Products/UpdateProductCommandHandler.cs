@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
+
 using DB_ECommerce.Models;
 using DB_ECommerce.Persistence;
-using DB_E_Commerce.E_Commerce.Application.Products;
 
-namespace DB_E_Commerce.Application.Products
+
+namespace DB_ECommerce.Application.Products
 {
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
     {
@@ -19,16 +20,14 @@ namespace DB_E_Commerce.Application.Products
 
         public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            var existingProduct = await context.Products.FindAsync(new object[] { request.Id }, cancellationToken);
+            var existingProduct = await context.Products.FindAsync(new object[] { request.ProductID }, cancellationToken);
 
             if (existingProduct == null)
             {
-                throw new KeyNotFoundException($"Product with ID {request.Id} not found.");
+                throw new KeyNotFoundException($"Product with ProductID {request.ProductID} not found.");
             }
 
-            existingProduct.ProductName = request.ProductName;
-            existingProduct.Price = request.Price;
-            existingProduct.Products_Categories = request.ProductCategories;
+            context.Update(existingProduct);
 
             await context.SaveChangesAsync(cancellationToken);
 

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 
-namespace DB_E_Commerce.E_Commerce.Application.Products
+namespace DB_ECommerce.Application.Products
 {
     public class DeleteProductCommand : IRequest
     {
-        public int Id { get; set; }
+        public int ProductID { get; set; }
     }
 }

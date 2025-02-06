@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using DB_ECommerce.Models;
 using DB_ECommerce.Persistence;
 
-namespace DB_E_Commerce.E_Commerce.Application.Products
+namespace DB_ECommerce.Application.Products
 {
     public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, List<Product>>
     {

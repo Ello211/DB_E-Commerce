@@ -1,20 +1,19 @@
 ﻿using MediatR;
 using DB_ECommerce.Models;
 
-namespace DB_E_Commerce.E_Commerce.Application.Products
+namespace DB_ECommerce.Application.Products
 {
     public class UpdateProductCommand : IRequest
     {
-        public int Id { get; set; }
+        public int ProductID { get; set; }
         public string ProductName { get; set; }
         public decimal Price { get; set; }
-        public List<Product_Category> ProductCategories { get; set; } = new();
 
         public Product ToProduct()
         {
             var product = new Product
             {
-                ProductID = this.Id,
+                ProductID = this.ProductID,
                 ProductName = this.ProductName,
                 Price = this.Price
             };

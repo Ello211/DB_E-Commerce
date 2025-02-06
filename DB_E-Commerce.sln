@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB_ECommerce.Models", "DB_E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB E-Commerce", "DB E-Commerce", "{B31A980F-3EA7-40C0-8BA6-FCE402119E15}"
 	ProjectSection(SolutionItems) = preProject
+		Beispieldaten.sql = Beispieldaten.sql
 		..\..\..\..\Documents\script.sql = ..\..\..\..\Documents\script.sql
+		Datenbankeinträge_löschen.sql = Datenbankeinträge_löschen.sql
 	EndProjectSection
 EndProject
 Global
