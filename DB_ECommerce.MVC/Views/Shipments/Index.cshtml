@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DB_ECommerce.MVC.ViewModels.Shipments.ShipmentListViewModel>
+
+@{
+    ViewData["Title"] = "Shipments";
+}
+
+<h2>Shipments</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Shipment</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tracking Number</th>
+            <th>Status</th>
+            <th>Shipment Date</th>
+            <th>Delivery Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var shipment in Model)
+        {
+            <tr>
+                <td>@shipment.TrackingNumber</td>
+                <td>@shipment.ShipmentStatus</td>
+                <td>@shipment.ShipmentDate?.ToString("dd-MM-yyyy")</td>
+                <td>@shipment.DeliveryDate?.ToString("dd-MM-yyyy")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@shipment.ShipmentID" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@shipment.ShipmentID" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@shipment.ShipmentID" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

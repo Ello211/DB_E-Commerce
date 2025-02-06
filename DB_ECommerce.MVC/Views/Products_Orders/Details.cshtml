@@ -1,0 +1,19 @@
+﻿@model DB_ECommerce.MVC.ViewModels.Products_Orders.ProductOrderDetailsViewModel
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h2>Order Details</h2>
+
+<div>
+    <h4>Product: @Model.ProductName</h4>
+    <p>Quantity: @Model.Quantity</p>
+    <p>Total Price: @Model.TotalPrice.ToString("C")</p>
+    <p>Order Number: @Model.OrderNumber</p>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ProductOrderID" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
