@@ -1,0 +1,27 @@
+﻿@model DB_ECommerce.MVC.ViewModels.Customers.CustomerDetailsViewModel
+
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<h2>Customer Details</h2>
+
+<div>
+    <h4>First Name:</h4>
+    <p>@Model.FirstName</p>
+    <h4>Last Name:</h4>
+    <p>@Model.LastName</p>
+    <h4>Address:</h4>
+    <p>@Model.Address</p>
+    <h4>Birthday:</h4>
+    <p>@Model.Birthday</p>
+    <h4>Account Created:</h4>
+    <p>@Model.AccountCreated</p>
+    <h4>Email:</h4>
+    <p>@Model.Email</p>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.CustomerID" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+

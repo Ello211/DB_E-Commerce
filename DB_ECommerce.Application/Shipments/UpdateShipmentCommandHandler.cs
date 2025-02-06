@@ -18,8 +18,8 @@ public class UpdateShipmentCommandHandler : IRequestHandler<UpdateShipmentComman
     public async Task Handle(UpdateShipmentCommand request, CancellationToken cancellationToken)
     {
         var existingShipment = await context.Shipments
-            .Include(shipemnt => shipemnt.Order)
-            .FirstOrDefaultAsync(shipemnt => shipemnt.ShipmentID == request.ShipmentID, cancellationToken);
+            .Include(shipment => shipment.Order)
+            .FirstOrDefaultAsync(shipment => shipment.ShipmentID == request.ShipmentID, cancellationToken);
 
         if (existingShipment == null)
         {

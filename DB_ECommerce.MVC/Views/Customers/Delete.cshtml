@@ -1,0 +1,21 @@
+﻿@model DB_ECommerce.MVC.ViewModels.Customers.CustomerDetailsViewModel
+
+@{
+    ViewData["Title"] = "Delete Customer";
+}
+
+<h2>Are you sure you want to delete this customer?</h2>
+
+<div>
+    <h4>Customer Name:</h4>
+    <p>@Model.FirstName</p>
+    <p>@Model.LastName</p>
+
+</div>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="CustomerID" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

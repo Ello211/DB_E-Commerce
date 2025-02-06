@@ -1,10 +1,9 @@
 ﻿using MediatR;
-
 using DB_ECommerce.Models;
 
 namespace DB_ECommerce.Application.Customers
 {
-    public class GetPaymentQuery : IRequest<List<Customer>>
+    public class GetCustomersQuery : IRequest<List<Customer>>
     {
     }
 }

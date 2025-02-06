@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DB_ECommerce.MVC.ViewModels.Customers.CustomerListViewModel>
+
+@{
+	ViewData["Title"] = "Customers";
+}
+
+<h2>Customers</h2>
+
+<p>
+	<a asp-action="Create" class="btn btn-primary">Create New Customer</a>
+</p>
+
+<table class="table table-s">
+	<thead>
+		<tr>
+			<th>@Html.DisplayNameFor(Model => Model.First().FirstName)</th>
+			<th>@Html.DisplayNameFor(Model => Model.First().LastName)</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var customer in Model)
+		{
+			<tr>
+				<td>@Html.DisplayFor(modelItem => customer.FirstName)</td>
+				<td>@Html.DisplayFor(modelItem => customer.LastName)</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@customer.CustomerID" class="btn btn-warning">Edit</a>
+					<a asp-action="Details" asp-route-id="@customer.CustomerID" class="btn btn-info">Details</a>
+					<a asp-action="Delete" asp-route-id="@customer.CustomerID" class="btn btn-danger">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

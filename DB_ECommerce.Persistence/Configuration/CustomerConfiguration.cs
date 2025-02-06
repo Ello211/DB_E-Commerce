@@ -11,11 +11,11 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {
         builder.HasKey(customer => customer.CustomerID);
 
-        builder.Property(customerinfo => customerinfo.Lastname).HasMaxLength(50).IsRequired();
-        builder.Property(customerinfo => customerinfo.Firstname).IsRequired();
-        builder.Property(customerinfo => customerinfo.Address).HasMaxLength(200).IsRequired();
+        builder.Property(customerinfo => customerinfo.LastName).HasMaxLength(50).IsRequired();
+        builder.Property(customerinfo => customerinfo.FirstName).IsRequired();
+        builder.Property(customerinfo => customerinfo.Address).HasMaxLength(50).IsRequired();
         builder.Property(customerinfo => customerinfo.Birthday);
         builder.Property(customerinfo => customerinfo.AccountCreated).IsRequired();
-        builder.Property(customerinfo => customerinfo.Email).HasMaxLength(200).IsRequired();
+        builder.Property(customerinfo => customerinfo.Email).HasMaxLength(50).IsRequired();
     }
 }

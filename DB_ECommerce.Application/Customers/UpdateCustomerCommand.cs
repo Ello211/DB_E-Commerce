@@ -3,13 +3,13 @@
 using DB_ECommerce.Models;
 
 namespace DB_ECommerce.Application.Customers;
-public class UpdatePaymentCommand : IRequest
+public class UpdateCustomerCommand : IRequest
 {
     public int CustomerID { get; set; }
 
-    public string Firstname { get; set; }
+    public string FirstName { get; set; }
 
-    public string Lastname { get; set; }
+    public string LastName { get; set; }
 
     public string Address { get; set; }
 
@@ -24,8 +24,8 @@ public class UpdatePaymentCommand : IRequest
         var customer = new Customer
         {
             CustomerID = this.CustomerID, 
-            Firstname = this.Firstname,
-            Lastname = this.Lastname,
+            FirstName = this.FirstName,
+            LastName = this.LastName,
             Address = this.Address,
             Birthday = this.Birthday,
             AccountCreated = this.AccountCreated,

@@ -1,0 +1,37 @@
+﻿@model DB_ECommerce.MVC.ViewModels.Shipments.ShipmentCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Shipment";
+}
+
+<h2>Create Shipment</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="TrackingNumber"></label>
+        <input asp-for="TrackingNumber" class="form-control" />
+        <span asp-validation-for="TrackingNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ShipmentDate"></label>
+        <input asp-for="ShipmentDate" class="form-control" type="date" />
+        <span asp-validation-for="ShipmentDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DeliveryDate"></label>
+        <input asp-for="DeliveryDate" class="form-control" type="date" />
+        <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ShipmentStatus"></label>
+        <input asp-for="ShipmentStatus" class="form-control" />
+        <span asp-validation-for="ShipmentStatus" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="OrderId"></label>
+        <input asp-for="OrderId" class="form-control" />
+        <span asp-validation-for="OrderId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>

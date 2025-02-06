@@ -1,13 +1,13 @@
 ﻿using MediatR;
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Persistence;
 
 namespace DB_E_Commerce.E_Commerce.Application.Orderss
 {
     public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
 
-        public UpdateOrderCommandHandler(ECommerceContext context)
+        public UpdateOrderCommandHandler(DB_ECommerceContext context)
         {
             this.context = context;
         }

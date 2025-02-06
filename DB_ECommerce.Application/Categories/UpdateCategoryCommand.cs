@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-using DB_E_Commerce.E_Commerce.Models;
+using DB_ECommerce.Models;
 
 namespace DB_E_Commerce.E_Commerce.Application.Categories
 {
@@ -8,7 +8,7 @@ namespace DB_E_Commerce.E_Commerce.Application.Categories
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }
-        public List<ProductCategory> ProductCategories { get; set; } = new();
+        public List<Product_Category> ProductCategories { get; set; } = new();
 
         public Category ToCategory()
         {

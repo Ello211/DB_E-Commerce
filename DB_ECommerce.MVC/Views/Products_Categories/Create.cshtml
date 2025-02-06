@@ -1,0 +1,24 @@
+﻿@model DB_ECommerce.MVC.ViewModels.ProductCategories.ProductCategoryCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Product Category";
+}
+
+<h2>Create Product Category</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="ProductID"></label>
+        <input asp-for="ProductID" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryID"></label>
+        <input asp-for="CategoryID" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

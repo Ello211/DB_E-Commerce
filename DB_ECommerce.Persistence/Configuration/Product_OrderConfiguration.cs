@@ -11,6 +11,9 @@ namespace DB_ECommerce.Persistence.Configuration
         {
             builder.HasKey(product_order => product_order.ProductOrderID);
 
+            builder.Property(product_order => product_order.Quantity).IsRequired();
+            builder.Property(product_order => product_order.TotalPrice).IsRequired();
+
             builder.HasOne(product_order => product_order.Order)
                 .WithMany(order => order.Products_Orders);
 

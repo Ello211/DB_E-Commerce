@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DB_ECommerce.MVC.ViewModels.Products_Orders.ProductOrderListViewModel>
+
+@{
+    ViewData["Title"] = "Product Orders";
+}
+
+<h2>Product Orders</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Order</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.ProductName</td>
+                <td>@order.Quantity</td>
+                <td>@order.TotalPrice.ToString("C")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@order.ProductOrderID" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Details" asp-route-id="@order.ProductOrderID" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Delete" asp-route-id="@order.ProductOrderID" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

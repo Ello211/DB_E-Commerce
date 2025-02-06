@@ -2,19 +2,19 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
-using DB_E_Commerce.E_Commerce.Models;
-using DB_E_Commerce.E_Commerce.Persistence;
+using DB_ECommerce.Models;
+using DB_ECommerce.Persistence;
 
 namespace DB_E_Commerce.E_Commerce.Application.Products
 {
     public class GetProductQueryHandler : IRequestHandler<GetProductQuery, Product>
     {
-        private readonly ECommerceContext context;
+        private readonly DB_ECommerceContext context;
         private readonly IDistributedCache cache;
 
         private TimeSpan threeMonths = new(0, 3, 0, 0, 0, 0);
 
-        public GetProductQueryHandler(ECommerceContext context, IDistributedCache cache)
+        public GetProductQueryHandler(DB_ECommerceContext context, IDistributedCache cache)
         {
             this.context = context;
             this.cache = cache;

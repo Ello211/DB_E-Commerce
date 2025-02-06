@@ -1,0 +1,27 @@
+﻿@model DB_ECommerce.MVC.ViewModels.Products_Orders.ProductOrderCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Product Order";
+}
+
+<h2>Create Product Order</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="ProductId" class="control-label"></label>
+        <input asp-for="ProductId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="OrderId" class="control-label"></label>
+        <input asp-for="OrderId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Quantity" class="control-label"></label>
+        <input asp-for="Quantity" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
