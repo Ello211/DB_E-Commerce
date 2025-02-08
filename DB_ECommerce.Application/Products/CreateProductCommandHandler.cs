@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using DB_ECommerce.Application.Products;
+
 using DB_ECommerce.Persistence;
 
-namespace DB_E_Commerce.E_Commerce.Application.Products
+namespace DB_ECommerce.Application.Products
 {
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     {

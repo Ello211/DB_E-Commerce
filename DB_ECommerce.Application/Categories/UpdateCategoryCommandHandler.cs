@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 using DB_ECommerce.Persistence;
 
-namespace DB_E_Commerce.E_Commerce.Application.Categories
+namespace DB_ECommerce.Application.Categories
 {
     public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand>
     {
@@ -18,30 +18,14 @@ namespace DB_E_Commerce.E_Commerce.Application.Categories
         public async Task Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
             var existingCategories = await context.Categories
-                .Include(c => c.Products_Categories)
-                .FirstOrDefaultAsync(c => c.CategoryID == request.Id, cancellationToken);
+            .FirstOrDefaultAsync(existingCategories => existingCategories.CategoryID == existingCategories.CategoryID, cancellationToken);
 
             if (existingCategories == null)
             {
-                throw new KeyNotFoundException($"Category with ID {request.Id} not found.");
+                throw new KeyNotFoundException($"Category with CategoryID {request.CategoryID} not found.");
             }
 
             existingCategories.CategoryName = request.CategoryName;
-
-            foreach (var productCategory in request.ProductCategories)
-            {
-                var existingProductCategory = existingCategories.Products_Categories
-                    .FirstOrDefault(pc => pc.ProductID == productCategory.ProductID);
-
-                if (existingProductCategory == null)
-                {
-                    existingCategories.Products_Categories.Add(productCategory);
-                }
-                else if (!request.ProductCategories.Contains(existingProductCategory))
-                {
-                    existingCategories.Products_Categories.Remove(existingProductCategory);
-                }
-            }
 
             await context.SaveChangesAsync(cancellationToken);
         }

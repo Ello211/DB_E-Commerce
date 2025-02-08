@@ -19,7 +19,7 @@ public class GetCustomerQueryHandler : IRequestHandler<GetCustomerQuery, Custome
 
     public async Task<Customer> Handle(GetCustomerQuery request, CancellationToken cancellationToken)
     {
-        var customer = await context.Customers.FirstOrDefaultAsync(s => s.Id == request.Id, cancellationToken);
+        var customer = await context.Customers.FirstOrDefaultAsync(c => c.CustomerID == request.CustomerID, cancellationToken);
         return customer;
     }
 }

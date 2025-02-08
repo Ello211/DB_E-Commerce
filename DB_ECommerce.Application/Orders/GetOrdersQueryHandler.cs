@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+
 using DB_ECommerce.Models;
-using DB_E_Commerce.E_Commerce.Application.Orderss;
 using DB_ECommerce.Persistence;
 
-namespace DB_E_Commerce.E_Commerce.Application.Orderss
+namespace DB_ECommerce.Application.Orders
 {
     public class GetOrdersQueryHandler : IRequestHandler<GetOrdersQuery, List<Order>>
     {

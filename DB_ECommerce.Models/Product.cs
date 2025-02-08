@@ -10,7 +10,7 @@
 
         public ICollection<Product_Order> Products_Orders { get; set; }
 
-        public ICollection<Product_Category> Products_Categories { get; set; } = new List<Product_Category>();
+        public ICollection<Category> Categories { get; set; }
 
     }
 }

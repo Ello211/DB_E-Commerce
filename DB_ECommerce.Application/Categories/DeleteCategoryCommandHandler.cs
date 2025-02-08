@@ -1,8 +1,7 @@
 ﻿using MediatR;
 using DB_ECommerce.Persistence;
-using DB_E_Commerce.Application.Categories;
 
-namespace DB_E_Commerce.E_Commerce.Application.Categories
+namespace DB_ECommerce.Application.Categories
 {
     public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand>
     {
@@ -15,10 +14,10 @@ namespace DB_E_Commerce.E_Commerce.Application.Categories
 
         public async Task Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
-            var category = await context.Categories.FindAsync(new object[] { request.Id }, cancellationToken);
+            var category = await context.Categories.FindAsync(new object[] { request.CategoryID }, cancellationToken);
             if (category == null)
             {
-                throw new KeyNotFoundException($"Category with ID {request.Id} not found.");
+                throw new KeyNotFoundException($"Category with CategoryID {request.CategoryID} not found.");
             }
 
             context.Categories.Remove(category);

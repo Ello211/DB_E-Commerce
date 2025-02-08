@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using DB_ECommerce.Models;
 
-namespace DB_E_Commerce.E_Commerce.Application.Categories
+namespace DB_ECommerce.Application.Categories
 {
     public class GetCategoryQuery : IRequest<Category>
     {
-        public int Id { get; set; }
+        public int CategoryID { get; set; }
     }
 }
 

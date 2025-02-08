@@ -6,6 +6,6 @@
 
         public string CategoryName { get; set; }
 
-        public ICollection<Product_Category> Products_Categories { get; set; } = new List<Product_Category>();
+        public ICollection<Product> Products { get; set; }
     }
 }

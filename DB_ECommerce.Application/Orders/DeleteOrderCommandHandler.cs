@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using DB_E_Commerce.E_Commerce.Application.Orderss;
+
 using DB_ECommerce.Persistence;
 
-namespace DB_E_Commerce.E_Commerce.Application.Orderss
+namespace DB_ECommerce.Application.Orders
 {
     public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
     {
@@ -15,10 +15,10 @@ namespace DB_E_Commerce.E_Commerce.Application.Orderss
 
         public async Task Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
         {
-            var order = await context.Orders.FindAsync(new object[] { request.Id }, cancellationToken);
+            var order = await context.Orders.FindAsync(new object[] { request.OrderID }, cancellationToken);
             if (order != null)
             {
-                throw new KeyNotFoundException($"Order with ID {request.Id} not found.");
+                throw new KeyNotFoundException($"Order with OrderID {request.OrderID} not found.");
             }
 
             context.Orders.Remove(order);
