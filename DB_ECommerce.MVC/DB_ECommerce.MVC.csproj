@@ -37,14 +37,10 @@
 	  <Folder Include="ViewModels\Products_Orders\" />
 	  <Folder Include="ViewModels\Products_Categories\" />
 	  <Folder Include="ViewModels\Products\" />
-	  <Folder Include="ViewModels\Payments\" />
-	  <Folder Include="ViewModels\Orders\" />
 	  <Folder Include="Views\Shipments\" />
 	  <Folder Include="Views\Products_Orders\" />
 	  <Folder Include="Views\Products_Categories\" />
 	  <Folder Include="Views\Products\" />
-	  <Folder Include="Views\Payments\" />
-	  <Folder Include="Views\Orders\" />
 	</ItemGroup>
 
 </Project>
