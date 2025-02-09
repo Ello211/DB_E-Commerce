@@ -1,0 +1,33 @@
+﻿@model DB_ECommerce.MVC.ViewModels.Orders.OrderCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Order";
+}
+
+<h2>Create Order</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="OrderDate" class="control-label"></label>
+        <input type="date" asp-for="OrderDate" class="form-control" />
+        <span asp-validation-for="OrderDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TotalPrice" class="control-label"></label>
+        <input type="number" asp-for="TotalPrice" class="form-control" />
+        <span asp-validation-for="TotalPrice" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CustomerID" class="control-label"></label>
+        <input type="number" asp-for="CustomerID" class="form-control" />
+        <span asp-validation-for="CustomerID" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

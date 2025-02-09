@@ -1,12 +1,12 @@
 ﻿using MediatR;
+
 using Microsoft.EntityFrameworkCore;
+
 using DB_ECommerce.Models;
 using DB_ECommerce.Persistence;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
+
+namespace DB_ECommerce.Application.Product_Orders
 {
     public class GetProductsOrdersQueryHandler : IRequestHandler<GetProductsOrdersQuery, List<Product_Order>>
     {
@@ -19,14 +19,17 @@ namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
 
         public async Task<List<Product_Order>> Handle(GetProductsOrdersQuery request, CancellationToken cancellationToken)
         {
-            var productOrders = await context.Products_Orders.ToListAsync(cancellationToken);
+            var productsOrders = await context.Products_Orders
+                .Include(productsOrders => productsOrders.Order)
+                .Include(productsOrders => productsOrders.Product)
+                .ToListAsync(cancellationToken);
 
-            if (productOrders == null || productOrders.Count == 0)
+            if (productsOrders == null || productsOrders.Count == 0)
             {
-                throw new KeyNotFoundException("No ProductOrders found.");
+                throw new KeyNotFoundException("No Products_Orders found.");
             }
 
-            return productOrders;
+            return productsOrders;
         }
     }
 }

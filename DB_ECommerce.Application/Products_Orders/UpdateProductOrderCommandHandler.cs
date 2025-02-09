@@ -1,11 +1,10 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using DB_ECommerce.Models;
-using DB_ECommerce.Persistence;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
+using Microsoft.EntityFrameworkCore;
+
+using DB_ECommerce.Persistence;
+
+namespace DB_ECommerce.Application.Product_Orders
 {
     public class UpdateProductOrderCommandHandler : IRequestHandler<UpdateProductOrderCommand>
     {
@@ -19,15 +18,17 @@ namespace DB_E_Commerce.E_Commerce.Application.Product_Orders
         public async Task Handle(UpdateProductOrderCommand request, CancellationToken cancellationToken)
         {
             var productOrder = await context.Products_Orders
-                .FirstOrDefaultAsync(po => po.ProductOrderID == request.ProductId && po.OrderId == request.OrderId, cancellationToken);
+                .Include(productOrder => productOrder.Order)
+                .Include(productOrder => productOrder.Product)
+                .FirstOrDefaultAsync(productOrder => productOrder.ProductOrderID == request.ProductOrderID, cancellationToken);
 
             if (productOrder == null)
             {
-                throw new KeyNotFoundException($"ProductOrder with ProductId {request.ProductId} and OrderId {request.OrderId} not found.");
+                throw new KeyNotFoundException($"Product_Order with ProductOrderID {request.ProductOrderID} not found.");
             }
 
             productOrder.Quantity = request.Quantity;
-            productOrder.TotalPrice = productOrder.Quantity * (await context.Products.FirstOrDefaultAsync(p => p.ProductID == request.ProductId, cancellationToken)).Price;
+            productOrder.TotalPrice = productOrder.Quantity * (await context.Products.FirstOrDefaultAsync(p => p.ProductID == request.ProductID, cancellationToken)).Price;
 
             await context.SaveChangesAsync(cancellationToken);
         }

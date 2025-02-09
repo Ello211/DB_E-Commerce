@@ -3,7 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using DB_ECommerce.Models;
 using DB_ECommerce.Persistence;
 
-namespace DB_E_Commerce.E_Commerce.Application.Products
+namespace DB_ECommerce.Application.Products
 {
     public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand>
     {
@@ -18,10 +18,10 @@ namespace DB_E_Commerce.E_Commerce.Application.Products
 
         public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            var product = await context.Products.FindAsync(new object[] { request.Id }, cancellationToken);
+            var product = await context.Products.FindAsync(new object[] { request.ProductID }, cancellationToken);
             if (product == null)
             {
-                throw new KeyNotFoundException($"Product with ID {request.Id} not found.");
+                throw new KeyNotFoundException($"Product with ID {request.ProductID} not found.");
             }
 
             context.Products.Remove(product);

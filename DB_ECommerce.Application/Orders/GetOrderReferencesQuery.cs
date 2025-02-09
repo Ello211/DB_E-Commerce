@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace DB_E_Commerce.Application.Orders
+namespace DB_ECommerce.Application.Orders
 {
 	public class GetOrderReferencesQuery : IRequest<OrderReferences>
 	{

@@ -1,0 +1,19 @@
+﻿@model DB_ECommerce.MVC.ViewModels.Orders.OrderDetailsViewModel
+
+@{
+    ViewData["Title"] = "Delete Order";
+}
+
+<h2>Are you sure you want to delete this order?</h2>
+
+<div>
+    <h4>Order IDe:</h4>
+    <p>@Model.OrderID</p>
+</div>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="OrderID" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

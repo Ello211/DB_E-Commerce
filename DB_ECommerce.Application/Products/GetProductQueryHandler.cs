@@ -5,7 +5,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using DB_ECommerce.Models;
 using DB_ECommerce.Persistence;
 
-namespace DB_E_Commerce.E_Commerce.Application.Products
+namespace DB_ECommerce.Application.Products
 {
     public class GetProductQueryHandler : IRequestHandler<GetProductQuery, Product>
     {
@@ -32,7 +32,7 @@ namespace DB_E_Commerce.E_Commerce.Application.Products
 
             if (product == null)
             {
-                throw new KeyNotFoundException($"Product with ID {request.Id} not found.");
+                throw new KeyNotFoundException($"Product with ID {request.ProductID} not found.");
             }
 
             await SetProductToCache(product);
@@ -52,7 +52,7 @@ namespace DB_E_Commerce.E_Commerce.Application.Products
 
         private async Task<Product> GetProductFromCache(GetProductQuery request)
         {
-            var key = $"product-{request.Id}";
+            var key = $"product-{request.ProductID}";
 
             var productAsSerializedJson = await cache.GetStringAsync(key);
             if (productAsSerializedJson == null)
@@ -66,7 +66,7 @@ namespace DB_E_Commerce.E_Commerce.Application.Products
 
         private async Task<Product> GetProductFromDatabase(GetProductQuery request, CancellationToken cancellationToken)
         {
-            var product = await context.Products.FirstOrDefaultAsync(p => p.ProductID == request.Id, cancellationToken);
+            var product = await context.Products.FirstOrDefaultAsync(p => p.ProductID == request.ProductID, cancellationToken);
             return product;
         }
     }
