@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using DB_ECommerce.MVC.ViewModels.Orders;
-using DB_E_Commerce.E_Commerce.Application.Orderss;
+using DB_ECommerce.Application.Orders;
 
 namespace DB_ECommerce.MVC.Controllers
 {
@@ -20,9 +20,11 @@ namespace DB_ECommerce.MVC.Controllers
             var orders = await _mediator.Send(new GetOrdersQuery());
             var viewModel = orders.Select(o => new OrderListViewModel
             {
-                Id = o.OrderID,
+                OrderID = o.OrderID,
                 OrderDate = o.OrderDate,
-                TotalAmount = o.TotalAmount
+                TotalPrice = o.TotalPrice,
+                Customer = o.Customer,
+                Payment = o.Payment,
             }).ToList();
 
             return View(viewModel);
@@ -31,7 +33,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Orders/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var order = await _mediator.Send(new GetOrderQuery { Id = id });
+            var order = await _mediator.Send(new GetOrderQuery { OrderID = id });
             if (order == null)
             {
                 return NotFound();
@@ -39,7 +41,11 @@ namespace DB_ECommerce.MVC.Controllers
 
             var viewModel = new OrderDetailsViewModel
             {
-                //anpassen
+                OrderID = order.OrderID,
+                OrderDate = order.OrderDate,
+                TotalPrice = order.TotalPrice,
+                Customer = order.Customer,
+                Payment = order.Payment,
             };
 
             return View(viewModel);
@@ -60,7 +66,9 @@ namespace DB_ECommerce.MVC.Controllers
             {
                 var command = new CreateOrderCommand
                 {
-                    //anpassen
+                    OrderDate = viewModel.OrderDate,
+                    TotalPrice = viewModel.TotalPrice,
+                    CustomerID = viewModel.CustomerID,
                 };
 
                 await _mediator.Send(command);
@@ -72,7 +80,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Orders/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var order = await _mediator.Send(new GetOrderQuery { Id = id });
+            var order = await _mediator.Send(new GetOrderQuery { OrderID = id });
             if (order == null)
             {
                 return NotFound();
@@ -80,7 +88,10 @@ namespace DB_ECommerce.MVC.Controllers
 
             var viewModel = new OrderUpdateViewModel
             {
-                //anpassen
+                OrderID = order.OrderID,
+                OrderDate = order.OrderDate,
+                TotalPrice = order.TotalPrice,
+                Customer = order.Customer,
             };
 
             return View(viewModel);
@@ -91,7 +102,7 @@ namespace DB_ECommerce.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, OrderUpdateViewModel viewModel)
         {
-            if (id != viewModel.Id)
+            if (id != viewModel.OrderID)
             {
                 return NotFound();
             }
@@ -100,7 +111,10 @@ namespace DB_ECommerce.MVC.Controllers
             {
                 var command = new UpdateOrderCommand
                 {
-                    //anpassen
+                    OrderID = viewModel.OrderID,
+                    OrderDate = viewModel.OrderDate,
+                    TotalPrice = viewModel.TotalPrice,
+                    CustomerID= viewModel.CustomerID,
                 };
 
                 await _mediator.Send(command);
@@ -112,7 +126,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Orders/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            var order = await _mediator.Send(new GetOrderQuery { Id = id });
+            var order = await _mediator.Send(new GetOrderQuery { OrderID = id });
             if (order == null)
             {
                 return NotFound();
@@ -120,7 +134,11 @@ namespace DB_ECommerce.MVC.Controllers
 
             var viewModel = new OrderDetailsViewModel
             {
-                //anpassen
+                OrderID= order.OrderID,
+                OrderDate= order.OrderDate,
+                TotalPrice = order.TotalPrice,
+                Customer= order.Customer,
+                Payment = order.Payment,
             };
 
             return View(viewModel);
@@ -131,7 +149,7 @@ namespace DB_ECommerce.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _mediator.Send(new DeleteOrderCommand { Id = id });
+            await _mediator.Send(new DeleteOrderCommand { OrderID = id });
             return RedirectToAction(nameof(Index));
         }
     }

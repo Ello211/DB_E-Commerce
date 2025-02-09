@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DB_E_Commerce.Application.Categories;
+using DB_ECommerce.Application.Categories;
 
 namespace DB_ECommerce.MVC.ViewModels.Categories
 {

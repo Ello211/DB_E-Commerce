@@ -1,16 +1,33 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DB_E_Commerce.E_Commerce.Application.Orderss;
-using DB_ECommerce.Models;
+using DB_ECommerce.Application.Orders;
 
 namespace DB_ECommerce.MVC.ViewModels.Orders
 {
     public class OrderCreateViewModel
     {
         [Required]
-        [Display(Name = "Customer")]
-        public Customer Customer { get; set; }
+        [Display(Name = "Order Date)")]
+        public DateTime OrderDate { get; set; }
+
         [Required]
-        [Display(Name = "Payment")]
-        public Payment Payment { get; set; }
+        [Display(Name = "Total Price")]
+        public decimal TotalPrice { get; set; }
+
+        [Required]
+        [Display(Name = "Customer ID")]
+        public int CustomerID { get; set; }
+
+       
+
+        public CreateOrderCommand ToCreateOrderComman()
+        {
+            return new CreateOrderCommand
+            {
+                OrderDate = this.OrderDate,
+                TotalPrice = this.TotalPrice,
+                CustomerID = this.CustomerID,
+                
+            };
+        }
     }
 }

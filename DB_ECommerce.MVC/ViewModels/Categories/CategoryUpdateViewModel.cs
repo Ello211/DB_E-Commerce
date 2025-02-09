@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DB_E_Commerce.E_Commerce.Application.Categories;
+using DB_ECommerce.Application.Categories;
 
 namespace DB_ECommerce.MVC.ViewModels.Categories
 {
@@ -26,7 +26,7 @@ namespace DB_ECommerce.MVC.ViewModels.Categories
         {
             return new UpdateCategoryCommand
             {
-                Id = this.Id,
+                CategoryID = this.Id,
                 CategoryName = this.CategoryName
             };
         }

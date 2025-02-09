@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using DB_ECommerce.MVC.ViewModels.Categories;
-using DB_E_Commerce.Application.Categories;
+using DB_ECommerce.Application.Categories;
 using DB_E_Commerce.E_Commerce.Application.Categories;
 namespace DB_ECommerce.MVC.Controllers
 {
@@ -101,7 +101,7 @@ namespace DB_ECommerce.MVC.Controllers
             {
                 var command = new UpdateCategoryCommand
                 {
-                    Id = viewModel.Id,
+                    CategoryID = viewModel.Id,
                     CategoryName = viewModel.CategoryName
                 };
 
@@ -134,7 +134,7 @@ namespace DB_ECommerce.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _mediator.Send(new DeleteCategoryCommand { Id = id });
+            await _mediator.Send(new DeleteCategoryCommand { CategoryID = id });
             return RedirectToAction(nameof(Index));
         }
     }
