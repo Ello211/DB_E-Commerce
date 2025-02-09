@@ -19,7 +19,6 @@ namespace DB_ECommerce.MVC.ViewModels.Products
                 ProductID = product.ProductID,
                 ProductName = product.ProductName,
                 Price = product.Price,
-                Categories = product.Products_Categories.Select(pc => pc.Category.CategoryName).ToList(),
                 OrderIds = product.Products_Orders.Select(po => po.ProductOrderID).ToList()
             };
         }
