@@ -1,4 +1,4 @@
-﻿using DB_E_Commerce.E_Commerce.Application.Product_Orders;
+﻿using DB_ECommerce.Application.Product_Orders;
 
 namespace DB_ECommerce.MVC.ViewModels.Products_Orders
 {
@@ -12,8 +12,8 @@ namespace DB_ECommerce.MVC.ViewModels.Products_Orders
         {
             return new CreateProductOrderCommand
             {
-                ProductId = this.ProductId,
-                OrderId = this.OrderId,
+                ProductID = this.ProductId,
+                OrderID = this.OrderId,
                 Quantity = this.Quantity
             };
         }

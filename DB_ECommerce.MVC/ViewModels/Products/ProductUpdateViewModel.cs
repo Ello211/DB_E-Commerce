@@ -16,7 +16,6 @@
                 ProductID = product.ProductID,
                 ProductName = product.ProductName,
                 Price = product.Price,
-                SelectedCategoryIds = product.Products_Categories.Select(pc => pc.CategoryID).ToList()
             };
         }
     }

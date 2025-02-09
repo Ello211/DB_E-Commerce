@@ -1,4 +1,4 @@
-﻿namespace DB_E-Commerce.MVC;
+﻿namespace DB_ECommerce.MVC;
 
 public class MongoDbSettings
 {

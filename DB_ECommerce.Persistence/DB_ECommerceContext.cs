@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-
 using DB_ECommerce.Models;
 using DB_ECommerce.Persistence.Configuration;
 
@@ -7,23 +6,18 @@ namespace DB_ECommerce.Persistence
 {
     public class DB_ECommerceContext : DbContext
     {
-        public DB_ECommerceContext(DbContextOptions options) : base(options)
+        public DB_ECommerceContext(DbContextOptions<DB_ECommerceContext> options) : base(options)
         {
-            this.Database.EnsureCreated();
+            // Entferne EnsureCreated, falls du Migrations nutzt!
+            // this.Database.EnsureCreated();
         }
 
         public DbSet<Category> Categories { get; set; }
-
         public DbSet<Customer> Customers { get; set; }
-
         public DbSet<Order> Orders { get; set; }
-
         public DbSet<Payment> Payments { get; set; }
-
         public DbSet<Product> Products { get; set; }
-
         public DbSet<Product_Order> Products_Orders { get; set; }
-
         public DbSet<Shipment> Shipments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

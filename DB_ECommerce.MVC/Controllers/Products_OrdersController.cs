@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using DB_ECommerce.MVC.ViewModels.Products_Orders;
-using DB_E_Commerce.E_Commerce.Application.Product_Orders;
+using DB_ECommerce.Application.Product_Orders;
 
 namespace DB_ECommerce.MVC.Controllers
 {
@@ -25,7 +25,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Products_Orders/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var productOrder = await _mediator.Send(new GetProductOrderQuery { ProductId = id });
+            var productOrder = await _mediator.Send(new GetProductOrderQuery { ProductOrderID = id });
             if (productOrder == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Products_Orders/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var productOrder = await _mediator.Send(new GetProductOrderQuery { ProductId = id });
+            var productOrder = await _mediator.Send(new GetProductOrderQuery { ProductOrderID = id });
             if (productOrder == null)
             {
                 return NotFound();
@@ -81,7 +81,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Products_Orders/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            var productOrder = await _mediator.Send(new GetProductOrderQuery { ProductId = id });
+            var productOrder = await _mediator.Send(new GetProductOrderQuery { ProductOrderID = id });
             if (productOrder == null)
             {
                 return NotFound();
@@ -95,7 +95,7 @@ namespace DB_ECommerce.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _mediator.Send(new DeleteProductOrderCommand { ProductId = id });
+            await _mediator.Send(new DeleteProductOrderCommand { ProductOrderID = id });
             return RedirectToAction(nameof(Index));
         }
     }

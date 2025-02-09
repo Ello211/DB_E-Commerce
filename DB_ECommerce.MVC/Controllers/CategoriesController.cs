@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using DB_ECommerce.MVC.ViewModels.Categories;
 using DB_ECommerce.Application.Categories;
-using DB_E_Commerce.E_Commerce.Application.Categories;
 namespace DB_ECommerce.MVC.Controllers
 {
     public class CategoriesController : Controller
@@ -30,7 +29,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var category = await _mediator.Send(new GetCategoryQuery { Id = id });
+            var category = await _mediator.Send(new GetCategoryQuery { CategoryID = id });
             if (category == null)
             {
                 return NotFound();
@@ -72,7 +71,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var category = await _mediator.Send(new GetCategoryQuery { Id = id });
+            var category = await _mediator.Send(new GetCategoryQuery { CategoryID = id });
             if (category == null)
             {
                 return NotFound();
@@ -114,7 +113,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            var category = await _mediator.Send(new GetCategoryQuery { Id = id });
+            var category = await _mediator.Send(new GetCategoryQuery { CategoryID = id });
             if (category == null)
             {
                 return NotFound();

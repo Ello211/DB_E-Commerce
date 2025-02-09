@@ -2,7 +2,6 @@
 using MediatR;
 using DB_ECommerce.Application.Products;
 using DB_ECommerce.MVC.ViewModels.Products;
-using DB_E_Commerce.E_Commerce.Application.Products;
 
 namespace DB_ECommerce.MVC.Controllers
 {
@@ -32,7 +31,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var product = await _mediator.Send(new GetProductQuery { Id = id });
+            var product = await _mediator.Send(new GetProductQuery { ProductID = id });
             if (product == null)
             {
                 return NotFound();
@@ -43,7 +42,6 @@ namespace DB_ECommerce.MVC.Controllers
                 ProductID = product.ProductID,
                 ProductName = product.ProductName,
                 Price = product.Price,
-                Categories = product.Products_Categories.Select(pc => pc.Category.CategoryName).ToList(),
                 OrderIds = product.Products_Orders.Select(po => po.ProductOrderID).ToList()
             };
 
@@ -79,7 +77,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var product = await _mediator.Send(new GetProductQuery { Id = id });
+            var product = await _mediator.Send(new GetProductQuery { ProductID = id });
             if (product == null)
             {
                 return NotFound();
@@ -104,7 +102,7 @@ namespace DB_ECommerce.MVC.Controllers
             {
                 var command = new UpdateProductCommand
                 {
-                    Id = model.ProductID,
+                    ProductID = model.ProductID,
                     ProductName = model.ProductName,
                     Price = model.Price
                 };
@@ -119,7 +117,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            var product = await _mediator.Send(new GetProductQuery { Id = id });
+            var product = await _mediator.Send(new GetProductQuery { ProductID = id });
             if (product == null)
             {
                 return NotFound();
@@ -140,7 +138,7 @@ namespace DB_ECommerce.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _mediator.Send(new DeleteProductCommand { Id = id });
+            await _mediator.Send(new DeleteProductCommand { ProductID = id });
             return RedirectToAction(nameof(Index));
         }
     }
