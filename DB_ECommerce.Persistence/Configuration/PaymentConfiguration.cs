@@ -17,9 +17,12 @@ namespace DB_ECommerce.Persistence.Configuration
             builder.Property(payment => payment.PaymentAmount).IsRequired();
             builder.Property(payment => payment.OpenPayment).IsRequired();
 
+            // Define the relationship to Order
             builder.HasOne(payment => payment.Order)
-                .WithOne(order => order.Payment);
-
+                .WithOne(order => order.Payment)
+                .HasForeignKey<Payment>(payment => payment.OrderID)
+                .IsRequired(false) // Payment can exist without an Order
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

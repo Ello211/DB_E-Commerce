@@ -4,7 +4,7 @@ using DB_ECommerce.Persistence;
 
 namespace DB_ECommerce.Application.Categories
 {
-    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Unit>
+    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand>
     {
         private readonly DB_ECommerceContext context;
 
@@ -13,14 +13,12 @@ namespace DB_ECommerce.Application.Categories
             this.context = context;
         }
 
-        public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
+        public async Task Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
             var category = request.ToCategory();
             context.Categories.Add(category);
 
             await context.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value; 
         }
     }
 }
