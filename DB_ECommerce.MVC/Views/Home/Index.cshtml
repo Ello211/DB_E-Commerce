@@ -1,13 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Willkommen!";
+    ViewData["Title"] = "Welcome!";
 }
 
-<div class="container text-center">
-    <h1 class="display-3">Willkommen in der E-Commerce-App!</h1>
-    <p class="lead">Finde deine Lieblingsprodukte und bestelle ganz einfach.</p>
+<div class="container text-center mb-3 mt-5">
+    <h1 class="display-3">Welcome to the E-Commerce-App!</h1>
+    <p class="lead">Find and order your favourite products easily.</p>
 
-    <a class="btn btn-primary btn-lg" asp-controller="Products" asp-action="Index">Jetzt einkaufen</a>
-    <a class="btn btn-outline-secondary btn-lg" asp-controller="Categories" asp-action="Index">Kategorien ansehen</a>
+    <a class="btn btn-primary btn-lg" asp-controller="Products" asp-action="Index">Buy now</a>
+    <a class="btn btn-outline-secondary btn-lg" asp-controller="Categories" asp-action="Index">View Categories</a>
 </div>
 
 <div class="container mb-5">
@@ -16,20 +16,20 @@
             <div class="card">
                 <img src="~/images/categories.jpg" class="card-img-top" alt="Kategorie 1">
                 <div class="card-body">
-                    <h5 class="card-title">Kategorien</h5>
-                    <p class="card-text">Durchstöbere verschiedene Produktkategorien.</p>
-                    <a asp-controller="Categories" asp-action="Index" class="btn btn-primary">Mehr erfahren</a>
+                    <h5 class="card-title">Categories</h5>
+                    <p class="card-text">Browse different product categories.</p>
+                    <a asp-controller="Categories" asp-action="Index" class="btn btn-primary">Learn more</a>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="card">
-                <img src="~/images/Produkt.jpg" class="card-img-top" alt="Produkte">
+                <img src="~/images/Produkt.jpg" class="card-img-top" alt="Products">
                 <div class="card-body">
-                    <h5 class="card-title">Beliebte Produkte</h5>
-                    <p class="card-text">Unsere Kunden lieben diese Produkte.</p>
-                    <a asp-controller="Products" asp-action="Index" class="btn btn-primary">Jetzt ansehen</a>
+                    <h5 class="card-title">Poupular Products</h5>
+                    <p class="card-text">Our customers love these products.</p>
+                    <a asp-controller="Products" asp-action="Index" class="btn btn-primary">Browse now</a>
                 </div>
             </div>
         </div>
@@ -38,11 +38,15 @@
             <div class="card">
                 <img src="~/images/sale.jpg" class="card-img-top" alt="Angebote">
                 <div class="card-body">
-                    <h5 class="card-title">Angebote</h5>
-                    <p class="card-text">Hol dir die besten Deals und spare Geld.</p>
-                    <a asp-controller="Products" asp-action="Index" class="btn btn-primary">Angebote entdecken</a>
+                    <h5 class="card-title">Sales</h5>
+                    <p class="card-text">Get the best deals and save money.</p>
+                    <a asp-controller="Products" asp-action="Index" class="btn btn-primary">Explore Sales</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
