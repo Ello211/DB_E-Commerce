@@ -15,8 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB E-Commerce", "DB E-Comme
 	ProjectSection(SolutionItems) = preProject
 		Beispieldaten.sql = Beispieldaten.sql
 		Datenbankeinträge_löschen.sql = Datenbankeinträge_löschen.sql
+		..\..\..\..\Downloads\e-commerce_db.sql = ..\..\..\..\Downloads\e-commerce_db.sql
 		identity.sql = identity.sql
-		..\..\..\..\Documents\script.sql = ..\..\..\..\Documents\script.sql
 	EndProjectSection
 EndProject
 Global
