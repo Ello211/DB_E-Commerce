@@ -67,5 +67,18 @@ namespace DB_ECommerce.MVC.Controllers
             // 204 No Content if update was successful
             return NoContent(); 
         }
+
+        // GET /api/reviews/product/{productId}/rating
+        [HttpGet("product/{productId}/rating")]
+        public async Task<ActionResult<double?>> GetAverageRating(string productId)
+        {
+            var averageRating = await _mediator.Send(new GetAverageRatingQuery(productId));
+
+            // Commented out as null is fine in table
+            /*if (averageRating == null)
+                return NotFound($"No reviews found for product {productId}");*/
+
+            return Ok(averageRating);
+        }
     }
 }

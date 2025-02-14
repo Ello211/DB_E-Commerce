@@ -1,4 +1,5 @@
 ﻿using DB_ECommerce.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -38,6 +39,24 @@ namespace DB_ECommerce.Persistence.Repositories
         {
             var result = await _reviews.DeleteOneAsync(r => r.Id == id);
             return result.DeletedCount > 0;
+        }
+
+        // Get Average rating for product
+        public async Task<double?> GetAverageRatingAsync(string productId)
+        {
+            var aggregate = await _reviews.Aggregate()
+                // Filter by product ID
+                .Match(r => r.ProductId == productId) 
+                .Group(new BsonDocument
+                {
+            { "_id", "$productId" },
+            // Calculate average rating
+            { "averageRating", new BsonDocument("$avg", "$rating") } 
+                })
+                .FirstOrDefaultAsync();
+
+            // Return the average or null if no reviews exist
+            return aggregate?["averageRating"]?.AsDouble; 
         }
     }
 }
