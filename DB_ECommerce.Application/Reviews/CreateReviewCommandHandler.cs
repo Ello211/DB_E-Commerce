@@ -4,7 +4,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DB_ECommerce.Application
+namespace DB_ECommerce.Application.Reviews
 {
     public class CreateReviewHandler : IRequestHandler<CreateReviewCommand, Review>
     {

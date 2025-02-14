@@ -1,7 +1,7 @@
 ﻿using DB_ECommerce.Models;
 using MediatR;
 
-namespace DB_ECommerce.Application
+namespace DB_ECommerce.Application.Reviews
 {
     public class CreateReviewCommand : IRequest<Review>
     {

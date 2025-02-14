@@ -20,6 +20,17 @@ namespace DB_ECommerce.Persistence.Repositories
         public async Task<Review> GetReviewByIdAsync(string id) =>
             await _reviews.Find(r => r.Id == id).FirstOrDefaultAsync();
 
+        public async Task<bool> UpdateReviewAsync(string reviewId, int rating, string comment)
+        {
+            var updateDefinition = Builders<Review>.Update
+                .Set(r => r.Rating, rating)
+                .Set(r => r.Comment, comment);
+
+            var result = await _reviews.UpdateOneAsync(r => r.Id == reviewId, updateDefinition);
+
+            return result.ModifiedCount > 0;
+        }
+
         public async Task CreateReviewAsync(Review review) =>
             await _reviews.InsertOneAsync(review);
 
