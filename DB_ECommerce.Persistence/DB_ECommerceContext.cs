@@ -22,6 +22,8 @@ namespace DB_ECommerce.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            // Lade alle anderen Konfigurationen
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
@@ -29,6 +31,8 @@ namespace DB_ECommerce.Persistence
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new Product_OrderConfiguration());
             modelBuilder.ApplyConfiguration(new ShipmentConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
