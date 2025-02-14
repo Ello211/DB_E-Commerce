@@ -7,6 +7,7 @@ using System.Reflection;
 using DB_ECommerce.Application; // Falls dein Application-Projekt diesen Namespace hat
 using DB_ECommerce.Persistence;
 using Microsoft.EntityFrameworkCore;
+using DB_ECommerce.MVC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,21 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DB_ECommerceContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+builder.Services.AddStackExchangeRedisCache(
+                redisCacheOptions =>
+                {
+                    var redisSettings = builder.Configuration.GetSection("RedisSettings").Get<RedisSettings>();
+                    redisCacheOptions.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions
+                    {
+                        AllowAdmin = true,
+                        DefaultDatabase = 0,
+                        Ssl = false,
+                        Password = redisSettings.Password,
+                        EndPoints = { { redisSettings.Host, redisSettings.Port } }
+                    };
+                });
 
 // **MediatR für die gesamte Application-Assembly registrieren**
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DB_ECommerce.Application.AssemblyReference).Assembly));
