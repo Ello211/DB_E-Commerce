@@ -15,6 +15,8 @@
         <tr>
             <th>@Html.DisplayNameFor(model => model.First().ProductName)</th>
             <th>@Html.DisplayNameFor(model => model.First().Price)</th>
+            <!-- Add rating -->
+            <th>⭐ Average Rating</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -24,6 +26,17 @@
             <tr>
                 <td>@item.ProductName</td>
                 <td>@item.Price.ToString("C")</td>
+                <!-- Add Rating if it has a value -->
+                <td>
+                    @if (item.AverageRating.HasValue)
+                    {
+                        @item.AverageRating.Value.ToString("0.0") <span>⭐</span>
+                    }
+                    else
+                    {
+                        <span>No Ratings</span>
+                    }
+                </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.ProductID" class="btn btn-info btn-sm">Details</a>
                     <a asp-action="Edit" asp-route-id="@item.ProductID" class="btn btn-warning btn-sm">Edit</a>
