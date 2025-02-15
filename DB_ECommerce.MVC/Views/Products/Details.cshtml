@@ -7,9 +7,12 @@
 <h2>Product Details</h2>
 
 <div>
-    <h4>@Model.ProductName</h4>
+    <h4>Product</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">Product Name</dt>
+        <dd class="col-sm-10">@Model.ProductName</dd>
+
         <dt class="col-sm-2">Price</dt>
         <dd class="col-sm-10">@Model.Price.ToString("C")</dd>
 

@@ -7,12 +7,24 @@
 <h2>Order Details</h2>
 
 <div>
-    <h4>Order Name:</h4>
-    <p>@Model.OrderID</p>
-    <p>@Model.OrderDate</p>
-    <p>@Model.TotalPrice</p>
-    <p>@Model.Customer</p>
-    <p>@Model.Payment</p>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Order ID</dt>
+        <dd class="col-sm-10">@Model.OrderID</dd>
+
+        <dt class="col-sm-2">Order Date</dt>
+        <dd class="col-sm-10">@Model.OrderDate</dd>
+
+        <dt class="col-sm-2">Total Price</dt>
+        <dd class="col-sm-10">@Model.TotalPrice</dd>
+
+        <dt class="col-sm-2">Customer</dt>
+        <dd class="col-sm-10">@Model.Customer</dd>
+
+        <dt class="col-sm-2">Payment</dt>
+        <dd class="col-sm-10">@Model.Payment</dd>
+    </dl>
 </div>
 
 <a asp-action="Edit" asp-route-id="@Model.OrderID" class="btn btn-warning">Edit</a>
