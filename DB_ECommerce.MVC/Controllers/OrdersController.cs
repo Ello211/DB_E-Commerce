@@ -17,6 +17,8 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
+            ViewData["ActivePage"] = "Orders";
+
             var orders = await _mediator.Send(new GetOrdersQuery());
             var viewModel = orders.Select(o => new OrderListViewModel
             {

@@ -17,6 +17,8 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Shipments
         public async Task<IActionResult> Index()
         {
+            ViewData["ActivePage"] = "Shipments";
+
             var shipments = await _mediator.Send(new GetShipmentsListQuery());
             var viewModel = shipments.Select(s => new ShipmentListViewModel
             {

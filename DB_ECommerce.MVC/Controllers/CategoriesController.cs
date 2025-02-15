@@ -16,6 +16,8 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
+            ViewData["ActivePage"] = "Categories";
+
             var categories = await _mediator.Send(new GetCategoriesQuery());
             var viewModel = categories.Select(c => new CategoryListViewModel
             {

@@ -52,3 +52,14 @@
     width: 100%;
 }
 
+/* Highlight active nav item with white bold text and underline */
+.navbar-nav .nav-item .nav-link.active {
+    color: white !important; /* Ensure text is white */
+    font-weight: bold !important; /* Make the text bold */
+    text-decoration: underline !important; /* Add an underline */
+}
+
+/* Optional: Remove underline from non-active items */
+.navbar-nav .nav-item .nav-link {
+    text-decoration: none; /* Removes underline from non-active items */
+}

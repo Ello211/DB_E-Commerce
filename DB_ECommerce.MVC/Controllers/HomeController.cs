@@ -6,6 +6,8 @@ namespace DB_ECommerce.MVC.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["ActivePage"] = "Home";
+
             return View();
         }
     }

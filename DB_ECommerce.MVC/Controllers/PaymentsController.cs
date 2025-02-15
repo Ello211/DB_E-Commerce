@@ -19,6 +19,8 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Payments
         public async Task<IActionResult> Index()
         {
+            ViewData["ActivePage"] = "Payments";
+
             var payments = await _mediator.Send(new GetPaymentsListQuery());
             var viewModel = new List<PaymentListViewModel>();
 
