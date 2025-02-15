@@ -2,16 +2,67 @@
 using MediatR;
 using DB_ECommerce.Application.Products;
 using DB_ECommerce.MVC.ViewModels.Products;
+using Microsoft.Extensions.Caching.Distributed;
+using DB_ECommerce.Models;
+using System.Text.Json;
 
 namespace DB_ECommerce.MVC.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IDistributedCache _cache;
+        private readonly TimeSpan _cacheDuration = TimeSpan.FromMinutes(2);
 
-        public ProductsController(IMediator mediator)
+        public ProductsController(IMediator mediator, IDistributedCache cache)
         {
             _mediator = mediator;
+            _cache = cache;
+        }
+
+        private async Task SetProductToCache(Product product)
+        {
+            var key = $"product-{product.ProductID}";
+            var productDto = new ProductDto
+            {
+                ProductID = product.ProductID,
+                ProductName = product.ProductName,
+                Price = product.Price,
+                // Weitere Eigenschaften hier
+            };
+
+            var productAsSerializedJson = JsonSerializer.Serialize(productDto);
+            await _cache.SetStringAsync(key, productAsSerializedJson, new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = _cacheDuration
+            });
+        }
+
+        private async Task<Product> GetProductFromCache(int productId)
+        {
+            var key = $"product-{productId}";
+            var productAsSerializedJson = await _cache.GetStringAsync(key);
+            if (productAsSerializedJson == null)
+            {
+                return null;
+            }
+
+            var productDto = JsonSerializer.Deserialize<ProductDto>(productAsSerializedJson);
+            var product = new Product
+            {
+                ProductID = productDto.ProductID,
+                ProductName = productDto.ProductName,
+                Price = productDto.Price,
+                // Weitere Eigenschaften hier
+            };
+
+            return product;
+        }
+
+        private async Task InvalidateCache(int productId)
+        {
+            var key = $"product-{productId}";
+            await _cache.RemoveAsync(key);
         }
 
         // GET: Products
@@ -33,7 +84,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var product = await _mediator.Send(new GetProductQuery { ProductID = id });
+            var product = await GetProductFromCache(id) ?? await _mediator.Send(new GetProductQuery { ProductID = id });
             if (product == null)
             {
                 return NotFound();
@@ -70,6 +121,8 @@ namespace DB_ECommerce.MVC.Controllers
                 };
 
                 await _mediator.Send(command);
+                var product = command.ToProduct();
+                await SetProductToCache(product);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -79,7 +132,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var product = await _mediator.Send(new GetProductQuery { ProductID = id });
+            var product = await GetProductFromCache(id) ?? await _mediator.Send(new GetProductQuery { ProductID = id });
             if (product == null)
             {
                 return NotFound();
@@ -110,6 +163,8 @@ namespace DB_ECommerce.MVC.Controllers
                 };
 
                 await _mediator.Send(command);
+                var product = command.ToProduct();
+                await SetProductToCache(product);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -119,7 +174,7 @@ namespace DB_ECommerce.MVC.Controllers
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            var product = await _mediator.Send(new GetProductQuery { ProductID = id });
+            var product = await GetProductFromCache(id) ?? await _mediator.Send(new GetProductQuery { ProductID = id });
             if (product == null)
             {
                 return NotFound();
@@ -141,6 +196,7 @@ namespace DB_ECommerce.MVC.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _mediator.Send(new DeleteProductCommand { ProductID = id });
+            await InvalidateCache(id);
             return RedirectToAction(nameof(Index));
         }
     }
