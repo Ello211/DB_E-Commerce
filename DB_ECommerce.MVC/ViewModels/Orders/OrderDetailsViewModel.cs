@@ -9,6 +9,7 @@ namespace DB_ECommerce.MVC.ViewModels.Orders
         public decimal TotalPrice { get; set; }
         public Customer Customer { get; set; }
         public Payment Payment { get; set; }
+        public string PaymentDisplay => Payment != null ? Payment.PaymentID.ToString() : "No payment";
 
         public static OrderDetailsViewModel FromOrder(DB_ECommerce.Models.Order order)
         {
