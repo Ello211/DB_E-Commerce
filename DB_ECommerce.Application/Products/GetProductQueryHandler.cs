@@ -40,7 +40,6 @@ namespace DB_ECommerce.Application.Products
             return product;
         }
 
-
         private async Task SetProductToCache(Product product)
         {
             var key = $"product-{product.ProductID}";
@@ -66,7 +65,11 @@ namespace DB_ECommerce.Application.Products
 
         private async Task<Product> GetProductFromDatabase(GetProductQuery request, CancellationToken cancellationToken)
         {
-            var product = await context.Products.FirstOrDefaultAsync(p => p.ProductID == request.ProductID, cancellationToken);
+            var product = await context.Products
+                .Include(p => p.Categories) 
+                .Include(p => p.Products_Orders)  
+                .FirstOrDefaultAsync(p => p.ProductID == request.ProductID, cancellationToken);
+
             return product;
         }
     }

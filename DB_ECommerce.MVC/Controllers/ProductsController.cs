@@ -163,8 +163,14 @@ namespace DB_ECommerce.MVC.Controllers
                 };
 
                 await _mediator.Send(command);
-                var product = command.ToProduct();
-                await SetProductToCache(product);
+
+                // Fetch the updated product from the database
+                var product = await _mediator.Send(new GetProductQuery { ProductID = model.ProductID });
+                if (product != null)
+                {
+                    await SetProductToCache(product);
+                }
+
                 return RedirectToAction(nameof(Index));
             }
 
