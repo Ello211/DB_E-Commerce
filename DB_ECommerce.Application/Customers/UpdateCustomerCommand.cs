@@ -23,7 +23,6 @@ public class UpdateCustomerCommand : IRequest
     {
         var customer = new Customer
         {
-            CustomerID = this.CustomerID, 
             FirstName = this.FirstName,
             LastName = this.LastName,
             Address = this.Address,
