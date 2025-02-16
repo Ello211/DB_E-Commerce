@@ -65,9 +65,9 @@ VALUES
 -- Insert sample data into Shipments table
 INSERT INTO [dbo].[Shipments] ([ShipmentDate], [TrackingNumber], [DeliveryDate], [ShipmentStatus], [OrderID])
 VALUES 
-(20231001, 'TRK123456789', '2023-10-05', 'Delivered', 1), -- Shipment for Order 1
-(20231002, 'TRK987654321', '2023-10-06', 'In Transit', 2), -- Shipment for Order 2
-(20231003, 'TRK456789123', '2023-10-07', 'Pending', 3),     -- Shipment for Order 3
-(20231004, 'TRK321654987', '2023-10-08', 'Pending', 4);    -- Shipment for Order 4
+('2023-10-01', 'TRK123456789', '2023-10-05', 'Delivered', 1), -- Shipment for Order 1
+('2023-10-02', 'TRK987654321', '2023-10-06', 'In Transit', 2), -- Shipment for Order 2
+('2023-10-03', 'TRK456789123', '2023-10-07', 'Pending', 3),     -- Shipment for Order 3
+('2023-10-04', 'TRK321654987', '2023-10-08', 'Pending', 4);    -- Shipment for Order 4
 
 GO
