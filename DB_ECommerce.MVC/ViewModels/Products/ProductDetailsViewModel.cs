@@ -19,6 +19,7 @@ namespace DB_ECommerce.MVC.ViewModels.Products
                 ProductID = product.ProductID,
                 ProductName = product.ProductName,
                 Price = product.Price,
+                Categories = product.Categories.Select(po => po.CategoryName).ToList(),
                 OrderIds = product.Products_Orders.Select(po => po.ProductOrderID).ToList()
             };
         }
