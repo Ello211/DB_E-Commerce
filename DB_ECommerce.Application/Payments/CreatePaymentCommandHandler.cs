@@ -34,7 +34,7 @@ public class CreatePaymentCommandHandler : IRequestHandler<CreatePaymentCommand>
             Order = order
         };
 
-        context.Add(order);
+        context.Payments.Add(payment); // Only add the payment to the context
         await context.SaveChangesAsync(cancellationToken);
     }
 }
