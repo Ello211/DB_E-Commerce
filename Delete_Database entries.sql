@@ -1,5 +1,5 @@
--- Alle Datenbankeinträge löschen
--- ! Reihenfolge beachten ! (sonst Konflikte afgrund der Fremdschlüssel)
+-- Delete all database entries
+-- ! Pay attention to the order! (otherwise conflicts due to the foreign keys)
 
 DELETE FROM Payments;
 DELETE FROM Shipments;
