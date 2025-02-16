@@ -11,23 +11,23 @@
     <h4>Payment</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Currency)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Currency)</dd>
+        <dt class="col-sm-2">Currency</dt>
+        <dd class="col-sm-10">@Model.Currency</dd>
 
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.PaymentMethod)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.PaymentMethod)</dd>
+        <dt class="col-sm-2">PaymentMethod</dt>
+        <dd class="col-sm-10">@Model.PaymentMethod</dd>
 
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.PaymentStatus)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.PaymentStatus)</dd>
+        <dt class="col-sm-2">PaymentStatus</dt>
+        <dd class="col-sm-10">@Model.PaymentStatus</dd>
 
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.PaymentAmount)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.PaymentAmount)</dd>
+        <dt class="col-sm-2">PaymentAmount</dt>
+        <dd class="col-sm-10">@Model.PaymentAmount</dd>
 
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.OpenPayment)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.OpenPayment)</dd>
+        <dt class="col-sm-2">OpenPayment</dt>
+        <dd class="col-sm-10">@Model.OpenPayment</dd>
     </dl>
 
-    <form asp-action="Delete">
+    <form asp-action="Delete" method="post">
         <input type="hidden" asp-for="PaymentID" />
         <button type="submit" class="btn btn-danger">Delete</button>
         <a asp-action="Index" class="btn btn-secondary">Cancel</a>
