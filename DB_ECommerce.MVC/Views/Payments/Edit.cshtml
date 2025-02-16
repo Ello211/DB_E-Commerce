@@ -33,7 +33,11 @@
         <input asp-for="OpenPayment" class="form-control" />
         <span asp-validation-for="OpenPayment" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="OrderID" class="control-label"></label>
+        <input asp-for="OrderID" class="form-control" />
+        <span asp-validation-for="OrderID" class="text-danger"></span>
+    </div>
     <button type="submit" class="btn btn-primary">Save Changes</button>
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </form>
-

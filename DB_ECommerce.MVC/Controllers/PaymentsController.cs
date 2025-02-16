@@ -33,7 +33,8 @@ namespace DB_ECommerce.MVC.Controllers
                     PaymentMethod = payment.PaymentMethod,
                     PaymentStatus = payment.PaymentStatus,
                     PaymentAmount = payment.PaymentAmount,
-                    OpenPayment = payment.OpenPayment
+                    OpenPayment = payment.OpenPayment,
+                    OrderID = payment.OrderID
                 });
             }
 
@@ -57,7 +58,8 @@ namespace DB_ECommerce.MVC.Controllers
                 PaymentMethod = payment.PaymentMethod,
                 PaymentStatus = payment.PaymentStatus,
                 PaymentAmount = payment.PaymentAmount,
-                OpenPayment = payment.OpenPayment
+                OpenPayment = payment.OpenPayment,
+                OrderID = payment.OrderID
             };
 
             return View(viewModel);
@@ -82,7 +84,8 @@ namespace DB_ECommerce.MVC.Controllers
                     PaymentMethod = model.PaymentMethod,
                     PaymentStatus = model.PaymentStatus,
                     PaymentAmount = model.PaymentAmount,
-                    OpenPayment = model.OpenPayment
+                    OpenPayment = model.OpenPayment,
+                    OrderID = model.OrderID
                 };
 
                 await _mediator.Send(command);
@@ -109,7 +112,8 @@ namespace DB_ECommerce.MVC.Controllers
                 PaymentMethod = payment.PaymentMethod,
                 PaymentStatus = payment.PaymentStatus,
                 PaymentAmount = payment.PaymentAmount,
-                OpenPayment = payment.OpenPayment
+                OpenPayment = payment.OpenPayment,
+                OrderID = payment.OrderID
             };
 
             return View(viewModel);
@@ -134,7 +138,8 @@ namespace DB_ECommerce.MVC.Controllers
                     PaymentMethod = model.PaymentMethod,
                     PaymentStatus = model.PaymentStatus,
                     PaymentAmount = model.PaymentAmount,
-                    OpenPayment = model.OpenPayment
+                    OpenPayment = model.OpenPayment,
+                    OrderID = model.OrderID
                 };
 
                 await _mediator.Send(command);
@@ -161,7 +166,8 @@ namespace DB_ECommerce.MVC.Controllers
                 PaymentMethod = payment.PaymentMethod,
                 PaymentStatus = payment.PaymentStatus,
                 PaymentAmount = payment.PaymentAmount,
-                OpenPayment = payment.OpenPayment
+                OpenPayment = payment.OpenPayment,
+                OrderID = payment.OrderID
             };
 
             return View(viewModel);

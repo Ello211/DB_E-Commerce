@@ -7,5 +7,6 @@
         public string PaymentStatus { get; set; }
         public decimal PaymentAmount { get; set; }
         public decimal OpenPayment { get; set; }
+        public int OrderID { get; set; }
     }
 }
