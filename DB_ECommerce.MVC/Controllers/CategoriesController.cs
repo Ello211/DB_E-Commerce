@@ -91,25 +91,20 @@ namespace DB_ECommerce.MVC.Controllers
         // POST: Categories/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, CategoryUpdateViewModel viewModel)
+        public async Task<IActionResult> Edit(CategoryUpdateViewModel viewModel)
         {
-            if (id != viewModel.Id)
-            {
-                return NotFound();
-            }
+            if (!ModelState.IsValid)
+                return View(viewModel);
 
-            if (ModelState.IsValid)
+            var command = new UpdateCategoryCommand
             {
-                var command = new UpdateCategoryCommand
-                {
-                    CategoryID = viewModel.Id,
-                    CategoryName = viewModel.CategoryName
-                };
+                CategoryID = viewModel.Id,
+                CategoryName = viewModel.CategoryName
+   
+            };
 
-                await _mediator.Send(command);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(viewModel);
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Categories/Delete/5
