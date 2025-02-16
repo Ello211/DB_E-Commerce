@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using DB_ECommerce.MVC.ViewModels.Orders;
 using DB_ECommerce.Application.Orders;
+using DB_ECommerce.Application.Customers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DB_ECommerce.MVC.Controllers
 {
@@ -88,12 +90,19 @@ namespace DB_ECommerce.MVC.Controllers
                 return NotFound();
             }
 
+            var customers = await _mediator.Send(new GetCustomersQuery()); 
+            ViewBag.Customers = customers.Select(c => new SelectListItem
+            {
+                Value = c.CustomerID.ToString(),
+                Text = c.LastName
+            }).ToList();
+
             var viewModel = new OrderUpdateViewModel
             {
                 OrderID = order.OrderID,
                 OrderDate = order.OrderDate,
                 TotalPrice = order.TotalPrice,
-                Customer = order.Customer,
+                CustomerID = order.Customer.CustomerID, 
             };
 
             return View(viewModel);

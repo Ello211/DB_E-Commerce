@@ -17,7 +17,10 @@ namespace DB_ECommerce.Application.Orders
 
         public async Task<Order> Handle(GetOrderQuery request, CancellationToken cancellationToken)
         {
-            var order = await context.Orders.FirstOrDefaultAsync(o => o.OrderID == request.OrderID, cancellationToken);
+            var order = await context.Orders
+               .Include(o => o.Customer) 
+               .Include(o => o.Payment)   
+               .FirstOrDefaultAsync(o => o.OrderID == request.OrderID, cancellationToken);
 
             if (order == null)
             {
