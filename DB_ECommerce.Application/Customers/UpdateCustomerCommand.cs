@@ -1,7 +1,5 @@
 ﻿using MediatR;
 
-using DB_ECommerce.Models;
-
 namespace DB_ECommerce.Application.Customers;
 public class UpdateCustomerCommand : IRequest
 {
@@ -19,19 +17,5 @@ public class UpdateCustomerCommand : IRequest
 
     public string Email { get; set; }
 
-    public Customer ToCustomer()
-    {
-        var customer = new Customer
-        {
-            FirstName = this.FirstName,
-            LastName = this.LastName,
-            Address = this.Address,
-            Birthday = this.Birthday,
-            AccountCreated = this.AccountCreated,
-            Email = this.Email
-        };
-
-        return customer;
-    }
 }
 

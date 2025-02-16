@@ -15,7 +15,6 @@ namespace DB_ECommerce.MVC.ViewModels.Customers
         [Required]
         [Display(Name = "Address")]
         public string Address { get; set; }
-        [Required]
         [Display(Name = "Birthday")]
         public DateOnly? Birthday { get; set; }
         public DateOnly AccountCreated { get; set; }
