@@ -18,7 +18,7 @@ namespace DB_ECommerce.Application.Categories
         public async Task Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
             var existingCategories = await context.Categories
-            .FirstOrDefaultAsync(existingCategories => existingCategories.CategoryID == existingCategories.CategoryID, cancellationToken);
+                .FirstOrDefaultAsync(c => c.CategoryID == request.CategoryID, cancellationToken);
 
             if (existingCategories == null)
             {
