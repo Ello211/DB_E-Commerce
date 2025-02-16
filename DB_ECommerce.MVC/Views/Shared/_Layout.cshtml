@@ -26,6 +26,7 @@
                             <li class="nav-item"><a class="nav-link text-light @(ViewData["ActivePage"]?.ToString() == "Orders" ? "active" : "")" asp-controller="Orders" asp-action="Index">Orders</a></li>
                             <li class="nav-item"><a class="nav-link text-light @(ViewData["ActivePage"]?.ToString() == "Payments" ? "active" : "")" asp-controller="Payments" asp-action="Index">Payments</a></li>
                             <li class="nav-item"><a class="nav-link text-light @(ViewData["ActivePage"]?.ToString() == "Products" ? "active" : "")" asp-controller="Products" asp-action="Index">Products</a></li>
+                            <li class="nav-item"><a class="nav-link text-light @(ViewData["ActivePage"]?.ToString() == "Products_Orders" ? "active" : "")" asp-controller="Products_Orders" asp-action="Index">Product Orders</a></li>
                             <li class="nav-item"><a class="nav-link text-light @(ViewData["ActivePage"]?.ToString() == "Shipments" ? "active" : "")" asp-controller="Shipments" asp-action="Index">Shipments</a></li>
                         </ul>
                     </div>
