@@ -17,10 +17,15 @@ namespace DB_ECommerce.Application.Product_Orders
 
         public async Task Handle(UpdateProductOrderCommand request, CancellationToken cancellationToken)
         {
+            if (request.ProductOrderID <= 0)
+            {
+                throw new ArgumentException("ProductOrderID must be greater than 0.");
+            }
+
+
             var productOrder = await context.Products_Orders
-                .Include(productOrder => productOrder.Order)
-                .Include(productOrder => productOrder.Product)
-                .FirstOrDefaultAsync(productOrder => productOrder.ProductOrderID == request.ProductOrderID, cancellationToken);
+                .Include(po => po.Product) 
+                .FirstOrDefaultAsync(po => po.ProductOrderID == request.ProductOrderID, cancellationToken);
 
             if (productOrder == null)
             {
@@ -28,7 +33,8 @@ namespace DB_ECommerce.Application.Product_Orders
             }
 
             productOrder.Quantity = request.Quantity;
-            productOrder.TotalPrice = productOrder.Quantity * (await context.Products.FirstOrDefaultAsync(p => p.ProductID == request.ProductID, cancellationToken)).Price;
+
+            productOrder.TotalPrice = productOrder.Quantity * productOrder.Product.Price;
 
             await context.SaveChangesAsync(cancellationToken);
         }
