@@ -6,7 +6,7 @@
 
 <h2>Create Order</h2>
 
-<form asp-action="Create">
+<form asp-action="Create" method="post">
     <div class="form-group">
         <label asp-for="OrderDate" class="control-label"></label>
         <input type="date" asp-for="OrderDate" class="form-control" />
@@ -26,8 +26,3 @@
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </form>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

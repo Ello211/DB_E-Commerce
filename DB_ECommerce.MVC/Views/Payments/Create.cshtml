@@ -6,7 +6,7 @@
 
 <h2>Create Payment</h2>
 
-<form asp-action="Create">
+<form asp-action="Create" method="post">
     <div class="form-group">
         <label asp-for="Currency" class="control-label"></label>
         <input asp-for="Currency" class="form-control" />
@@ -27,7 +27,7 @@
         <label asp-for="OpenPayment" class="control-label"></label>
         <input asp-for="OpenPayment" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-success">Create</button>
+    <button type="submit" class="btn btn-primary">Create</button>
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </form>
 

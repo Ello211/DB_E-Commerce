@@ -6,34 +6,33 @@
 
 <h2>Edit Payment</h2>
 
-<form asp-action="Edit">
+<form asp-action="Edit" method="post">
     <input type="hidden" asp-for="PaymentID" />
-
     <div class="form-group">
         <label asp-for="Currency" class="control-label"></label>
         <input asp-for="Currency" class="form-control" />
+        <span asp-validation-for="Currency" class="text-danger"></span>
     </div>
-
     <div class="form-group">
         <label asp-for="PaymentMethod" class="control-label"></label>
         <input asp-for="PaymentMethod" class="form-control" />
+        <span asp-validation-for="PaymentMethod" class="text-danger"></span>
     </div>
-
     <div class="form-group">
         <label asp-for="PaymentStatus" class="control-label"></label>
         <input asp-for="PaymentStatus" class="form-control" />
+        <span asp-validation-for="PaymentStatus" class="text-danger"></span>
     </div>
-
     <div class="form-group">
         <label asp-for="PaymentAmount" class="control-label"></label>
         <input asp-for="PaymentAmount" class="form-control" />
+        <span asp-validation-for="PaymentAmount" class="text-danger"></span>
     </div>
-
     <div class="form-group">
         <label asp-for="OpenPayment" class="control-label"></label>
         <input asp-for="OpenPayment" class="form-control" />
+        <span asp-validation-for="OpenPayment" class="text-danger"></span>
     </div>
-
     <button type="submit" class="btn btn-primary">Save Changes</button>
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </form>

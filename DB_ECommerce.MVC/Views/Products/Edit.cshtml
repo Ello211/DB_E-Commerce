@@ -7,33 +7,20 @@
 <h2>Edit Product</h2>
 
 <form asp-action="Edit" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
     <input type="hidden" asp-for="ProductID" />
 
     <div class="form-group">
-        <label asp-for="ProductName" class="control-label"></label>
+        <label asp-for="ProductName"></label>
         <input asp-for="ProductName" class="form-control" />
         <span asp-validation-for="ProductName" class="text-danger"></span>
     </div>
-
     <div class="form-group">
-        <label asp-for="Price" class="control-label"></label>
+        <label asp-for="Price"></label>
         <input asp-for="Price" class="form-control" />
         <span asp-validation-for="Price" class="text-danger"></span>
     </div>
-
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-</form>
-
-<div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</div>
+</form>
+    
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
