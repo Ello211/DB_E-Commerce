@@ -12,7 +12,7 @@ namespace DB_ECommerce.MVC.ViewModels.Products_Orders
         {
             return new UpdateProductOrderCommand
             {
-                OrderID = this.ProductOrderID,
+                ProductOrderID = this.ProductOrderID,
                 Quantity = this.Quantity
             };
         }
