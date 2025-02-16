@@ -7,13 +7,26 @@
 <h2>Order Details</h2>
 
 <div>
-    <h4>Product: @Model.ProductName</h4>
-    <p>Quantity: @Model.Quantity</p>
-    <p>Total Price: @Model.TotalPrice.ToString("C")</p>
-    <p>Order Number: @Model.OrderNumber</p>
+    <h4>Product</h4>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">Product Nme</dt>
+        <dd class="col-sm-10">@Model.ProductName</dd>
+
+        <dt class="col-sm-2">Quantity</dt>
+        <dd class="col-sm-10">@Model.Quantity</dd>
+
+        <dt class="col-sm-2">Total Price</dt>
+        <dd class="col-sm-10">@Model.TotalPrice</dd>
+
+        <dt class="col-sm-2">Order Number</dt>
+        <dd class="col-sm-10">@Model.OrderNumber</dd>
+
+        <dt class="col-sm-2">Product Order ID</dt>
+        <dd class="col-sm-10">@Model.ProductOrderID</dd>
+    </dl>
+
 </div>
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ProductOrderID" class="btn btn-warning">Edit</a>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</div>
+<a asp-action="Edit" asp-route-id="@Model.ProductOrderID" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
