@@ -18,9 +18,12 @@
 
         <dt class="col-sm-2">Categories</dt>
         <dd class="col-sm-10">
-            @foreach (var category in Model.Categories)
+            @if (Model?.Categories != null)
             {
-                <span class="badge bg-secondary">@category</span>
+                foreach (var category in Model.Categories)
+                {
+                    <span class="badge bg-secondary">@category</span>
+                }
             }
         </dd>
 

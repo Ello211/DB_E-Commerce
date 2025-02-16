@@ -12,7 +12,7 @@ namespace DB_ECommerce.MVC.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IDistributedCache _cache;
-        private readonly TimeSpan _cacheDuration = TimeSpan.FromMinutes(2);
+        private readonly TimeSpan _cacheDuration = TimeSpan.FromMinutes(10);
 
         public ProductsController(IMediator mediator, IDistributedCache cache)
         {
@@ -95,7 +95,7 @@ namespace DB_ECommerce.MVC.Controllers
                 ProductID = product.ProductID,
                 ProductName = product.ProductName,
                 Price = product.Price,
-                OrderIds = product.Products_Orders.Select(po => po.ProductOrderID).ToList()
+                OrderIds = product.Products_Orders?.Select(po => po.ProductOrderID).ToList() ?? new List<int>()
             };
 
             return View(viewModel);
