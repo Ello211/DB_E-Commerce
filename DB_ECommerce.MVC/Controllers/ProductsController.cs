@@ -2,9 +2,11 @@
 using MediatR;
 using DB_ECommerce.Application.Products;
 using DB_ECommerce.MVC.ViewModels.Products;
+using DB_ECommerce.Application.Reviews;
 using Microsoft.Extensions.Caching.Distributed;
 using DB_ECommerce.Models;
 using System.Text.Json;
+
 
 namespace DB_ECommerce.MVC.Controllers
 {
@@ -77,6 +79,20 @@ namespace DB_ECommerce.MVC.Controllers
                 ProductName = p.ProductName,
                 Price = p.Price
             }).ToList();
+
+            // Fetch all ratings
+            var ratingTasks = products.Select(p =>
+                _mediator.Send(new GetAverageRatingQuery(p.ProductID.ToString()))
+            ).ToList();
+
+            // Concurrently executes all rating requests
+            var ratings = await Task.WhenAll(ratingTasks);
+
+            // Assign ratings to products
+            for (int i = 0; i < products.Count; i++)
+            {
+                viewModel[i].AverageRating = ratings[i];
+            }
 
             return View(viewModel);
         }
